@@ -59,6 +59,26 @@ h1,h2,h3{font-family:'Playfair Display',serif}
 .hero-now-lbl{font-size:10px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.05em}
 .hero-now-txt{font-size:13px;color:#fff;font-weight:500;margin-top:2px}
 
+/* BIG PROGRESS RINGS */
+.bigprog-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 18px 14px}
+.bigprog-card{background:var(--card);border-radius:var(--radius);padding:14px 12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden}
+.bigprog-card::before{content:'';position:absolute;inset:0;border-radius:var(--radius);opacity:.04}
+.bpc-j::before{background:var(--j-primary)}.bpc-jg::before{background:var(--jg-primary)}
+.ring-wrap{position:relative;width:88px;height:88px;margin-bottom:8px}
+.ring-svg{width:88px;height:88px;transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:#eee;stroke-width:7}
+.ring-fill{fill:none;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)}
+.ring-fill-j{stroke:var(--j-primary)}.ring-fill-jg{stroke:var(--jg-primary)}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-pct{font-size:20px;font-weight:700;line-height:1}
+.ring-pct-j{color:var(--j-primary)}.ring-pct-jg{color:var(--jg-primary)}
+.ring-sub{font-size:9px;color:var(--muted);margin-top:1px;font-weight:500}
+.bpc-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px;text-align:center}
+.bpc-subtitle{font-size:10px;color:var(--muted);text-align:center;line-height:1.4}
+.bpc-breakdown{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:center}
+.bpc-tag{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
+.bpc-tag-j{background:var(--j-light);color:var(--j-dark)}.bpc-tag-jg{background:var(--jg-light);color:var(--jg-dark)}
+
 /* PROGRESS CARDS */
 .prog-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 18px 14px}
 .pcard{background:var(--card);border-radius:var(--radius-sm);padding:10px 8px;text-align:center;box-shadow:var(--shadow)}
@@ -252,6 +272,32 @@ h1,h2,h3{font-family:'Playfair Display',serif}
 /* SYNC INDICATOR */
 .sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-left:6px}
 .sync-ok{background:#4caf50}.sync-saving{background:#ff9800;animation:blink 1s infinite}.sync-off{background:#f44336}
+/* WEIGHT TRACKER */
+.weight-card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.wt-log-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.wt-input{flex:1;padding:10px 12px;border:1.5px solid #ddd;border-radius:10px;font-size:18px;font-family:'DM Sans',sans-serif;outline:none;text-align:center;font-weight:600}
+.wt-btn{padding:10px 18px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;color:#fff;font-family:'DM Sans',sans-serif}
+.wt-btn-j{background:var(--j-primary)}.wt-btn-jg{background:var(--jg-primary)}
+.wt-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.wt-stat{background:var(--bg);border-radius:10px;padding:8px;text-align:center}
+.wt-stat-val{font-size:17px;font-weight:700}
+.wt-stat-lbl{font-size:10px;color:var(--muted)}
+/* BODY SILHOUETTE CHART */
+.silhouette-wrap{position:relative;margin:0 auto;width:100%;max-width:360px}
+.sil-canvas{width:100%;border-radius:var(--radius-sm);background:var(--bg);display:block}
+.sil-days{display:flex;justify-content:space-between;margin-top:4px;padding:0 2px}
+.sil-day-lbl{font-size:9px;color:var(--muted);text-align:center;flex:1}
+.wt-no-data{text-align:center;padding:28px 16px;color:var(--muted);font-size:13px}
+.wt-no-data-emoji{font-size:36px;display:block;margin-bottom:8px}
+/* WATER-DROP DOTS */
+.drop-row{display:flex;gap:3px;flex-wrap:wrap;align-items:flex-end;justify-content:center;min-height:80px;padding:10px 4px 0}
+.drop-item{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;min-width:18px;max-width:28px}
+.drop-dot{border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;transition:all .4s ease;cursor:pointer;position:relative}
+.drop-dot:hover::after{content:attr(data-tip);position:absolute;bottom:110%;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;font-size:10px;padding:3px 6px;border-radius:6px;white-space:nowrap;z-index:10;pointer-events:none}
+.drop-lbl{font-size:9px;color:var(--muted);text-align:center}
+.drop-wt{font-size:9px;font-weight:600;text-align:center}
+.wt-legend{display:flex;gap:12px;justify-content:center;margin-top:10px;font-size:11px;color:var(--muted);align-items:center}
+.wt-legend-dot{width:10px;height:12px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;display:inline-block;margin-right:3px}
 </style>
 </head>
 <body>
@@ -289,6 +335,42 @@ h1,h2,h3{font-family:'Playfair Display',serif}
     <div class="hero-now">
       <div class="hero-now-lbl">⏰ Right now you should be</div>
       <div class="hero-now-txt" id="hNow">Loading...</div>
+    </div>
+  </div>
+
+  <!-- BIG PROGRESS RINGS -->
+  <div class="bigprog-row">
+    <div class="bigprog-card bpc-j" id="todayRingCard">
+      <div class="bpc-title">Today's Tasks</div>
+      <div class="ring-wrap">
+        <svg class="ring-svg" viewBox="0 0 88 88">
+          <circle class="ring-track" cx="44" cy="44" r="37"/>
+          <circle class="ring-fill ring-fill-j" id="todayRingFill" cx="44" cy="44" r="37"
+            stroke-dasharray="232.5" stroke-dashoffset="232.5"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-pct ring-pct-j" id="todayPct">0%</div>
+          <div class="ring-sub">today</div>
+        </div>
+      </div>
+      <div class="bpc-subtitle" id="todayRingDetail">0 of 0 tasks done</div>
+      <div class="bpc-breakdown" id="todayBreakdown"></div>
+    </div>
+    <div class="bigprog-card bpc-j" id="planRingCard">
+      <div class="bpc-title">15-Day Journey</div>
+      <div class="ring-wrap">
+        <svg class="ring-svg" viewBox="0 0 88 88">
+          <circle class="ring-track" cx="44" cy="44" r="37"/>
+          <circle class="ring-fill ring-fill-j" id="planRingFill" cx="44" cy="44" r="37"
+            stroke-dasharray="232.5" stroke-dashoffset="232.5"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-pct ring-pct-j" id="planPct">0%</div>
+          <div class="ring-sub">overall</div>
+        </div>
+      </div>
+      <div class="bpc-subtitle" id="planRingDetail">0 of 15 days complete</div>
+      <div class="bpc-breakdown" id="planBreakdown"></div>
     </div>
   </div>
 
@@ -360,12 +442,18 @@ h1,h2,h3{font-family:'Playfair Display',serif}
   <div style="margin:0 18px 18px" id="tipsWrap"></div>
 </div>
 
+<!-- WEIGHT TRACKER PANEL -->
+<div id="panel-weight" class="panel">
+  <div class="sec-hdr"><h2>Weight Journey</h2><p id="wtSubtitle">Log daily — watch your progress</p></div>
+  <div style="margin:0 18px 18px" id="weightWrap"></div>
+</div>
+
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <button class="nav-btn aj" id="nav-today" onclick="switchPanel('today')"><span class="nav-icon">🏠</span><span class="nav-lbl">Today</span></button>
   <button class="nav-btn" id="nav-meals" onclick="switchPanel('meals')"><span class="nav-icon">🥗</span><span class="nav-lbl">Meals</span></button>
   <button class="nav-btn" id="nav-exercise" onclick="switchPanel('exercise')"><span class="nav-icon">💪</span><span class="nav-lbl">Exercise</span></button>
-  <button class="nav-btn" id="nav-watch" onclick="switchPanel('watch')"><span class="nav-icon">⌚</span><span class="nav-lbl">Watch</span></button>
+  <button class="nav-btn" id="nav-weight" onclick="switchPanel('weight')"><span class="nav-icon">⚖️</span><span class="nav-lbl">Weight</span></button>
   <button class="nav-btn" id="nav-calendar" onclick="switchPanel('calendar')"><span class="nav-icon">📅</span><span class="nav-lbl">15 Days</span></button>
 </div>
 
@@ -646,6 +734,7 @@ function switchPanel(panel){
 function renderAll(){
   renderHeader();
   renderHero();
+  renderRings();
   renderProgress();
   renderWater();
   renderSteps();
@@ -655,6 +744,7 @@ function renderAll(){
   renderExercise();
   renderWatch();
   renderCalendar();
+  renderWeight();
   renderTips();
 }
 
@@ -662,6 +752,77 @@ function renderHeader(){
   const p=person;
   document.getElementById('dayBadge').textContent=`Day ${dayNum()+1} of 15`;
   document.getElementById('dayBadge').className=`day-badge day-badge-${p}`;
+}
+
+// ─── RING HELPER ─────────────────────────────────────────────
+function setRing(fillId,pctId,detailId,breakdownId,ringCardId,pct,detail,tags,p){
+  const CIRC=232.5;
+  const fill=document.getElementById(fillId);
+  if(!fill)return;
+  fill.style.strokeDashoffset=CIRC-(pct/100)*CIRC;
+  fill.className=`ring-fill ring-fill-${p}`;
+  document.getElementById(pctId).textContent=Math.round(pct)+'%';
+  document.getElementById(pctId).className=`ring-pct ring-pct-${p}`;
+  document.getElementById(detailId).textContent=detail;
+  document.getElementById(breakdownId).innerHTML=tags.map(t=>`<span class="bpc-tag bpc-tag-${p}">${t}</span>`).join('');
+  if(ringCardId)document.getElementById(ringCardId).className=`bigprog-card bpc-${p}`;
+}
+
+function renderRings(){
+  const p=person;
+  const dn=dayNum();
+  const illus=p==='j'?J_ILLUS:JG_ILLUS;
+  const meds=p==='j'?J_MED:JG_MED;
+
+  // ── RING 1: TODAY'S TASK COMPLETION % ────────────────────
+  // Only counts tasks for the current day
+  const sch=getSchData();
+  const schDone=sch.filter((_,i)=>S[sk('sch_'+i)]).length;
+  const mealsDone=[0,1,2].filter(i=>S[sk('meal_'+i+'_done')]).length;
+  const illusDone=illus.filter((_,i)=>S[sk('illus_'+i)]).length;
+  const medsDone=meds.filter((_,mi)=>S[sk('med_'+mi+'_done')]).length;
+  const waterDone=(S[sk('water')]||0)>=8?1:0;
+  const stepsDone=(S[sk('steps')]||0)>=8000?1:0;
+
+  const todayTotal=sch.length+3+illus.length+meds.length+1+1;
+  const todayDone=schDone+mealsDone+illusDone+medsDone+waterDone+stepsDone;
+  const todayPct=todayTotal>0?(todayDone/todayTotal)*100:0;
+
+  setRing('todayRingFill','todayPct','todayRingDetail','todayBreakdown','todayRingCard',
+    todayPct,
+    `${todayDone} of ${todayTotal} tasks done`,
+    [`🗓 ${schDone}/${sch.length}`,`🥗 ${mealsDone}/3`,`💪 ${illusDone}/${illus.length}`,`🧘 ${medsDone}/${meds.length}`],
+    p);
+
+  // ── RING 2: 15-DAY PLAN COMPLETION % ─────────────────────
+  // Counts how many of the 15 days are marked complete
+  const daysDone=Array.from({length:15},(_,d)=>S[`${p}_${d}_done`]?1:0).reduce((a,b)=>a+b,0);
+  // Also factor in partial progress: days elapsed but not marked done still contribute partial %
+  let partialScore=0;
+  for(let d=0;d<=dn;d++){
+    if(S[`${p}_${d}_done`]){partialScore+=1;continue;}
+    // partial day: count tasks
+    const dsk=(k)=>`${p}_${d}_${k}`;
+    const dt=new Date(START);dt.setDate(dt.getDate()+d);const dw=dt.getDay();
+    const dSch=p==='j'?((dw===0||dw===6)?J_WE:J_WD):((dw===0||dw===6)?JG_WE:JG_WD);
+    const dTotal=dSch.length+3+illus.length+meds.length+2;
+    const dDone=
+      dSch.filter((_,i)=>S[dsk('sch_'+i)]).length+
+      [0,1,2].filter(i=>S[dsk('meal_'+i+'_done')]).length+
+      illus.filter((_,i)=>S[dsk('illus_'+i)]).length+
+      meds.filter((_,mi)=>S[dsk('med_'+mi+'_done')]).length+
+      ((S[dsk('water')]||0)>=8?1:0)+
+      ((S[dsk('steps')]||0)>=8000?1:0);
+    partialScore+=dTotal>0?dDone/dTotal:0;
+  }
+  const planPct=(partialScore/15)*100;
+  const daysLeft=15-(dn+1);
+
+  setRing('planRingFill','planPct','planRingDetail','planBreakdown','planRingCard',
+    Math.min(planPct,100),
+    `${daysDone} of 15 days fully complete`,
+    [`✅ ${daysDone} complete`,`📅 Day ${dn+1}/15`,`⏳ ${daysLeft} days left`],
+    p);
 }
 
 function renderHero(){
@@ -1024,6 +1185,192 @@ function renderTips(){
     allCard.appendChild(el);
   });
   wrap.appendChild(allCard);
+}
+
+// ─── WEIGHT TRACKER ──────────────────────────────────────────
+function renderWeight(){
+  const p=person;
+  const wrap=document.getElementById('weightWrap');
+  if(!wrap)return;
+  wrap.innerHTML='';
+  document.getElementById('wtSubtitle').textContent=
+    p==='j'?'Jigar · Starting weight: 84 kg · Goal: 74 kg':'Jigna · Maintenance tracking · Target: 57 kg';
+
+  const startWt=p==='j'?84:57;
+  const goalWt=p==='j'?74:55;
+
+  // collect all logged weights
+  const weights=[];
+  for(let d=0;d<15;d++){
+    const v=S[`${p}_wt_${d}`];
+    weights.push(v?parseFloat(v):null);
+  }
+  const logged=weights.filter(w=>w!==null);
+
+  // ── LOG CARD ─────────────────────────────────────────────
+  const logCard=document.createElement('div');
+  logCard.className='weight-card';
+  const todayWt=weights[dayNum()]||'';
+  logCard.innerHTML=`
+    <div style="font-size:14px;font-weight:600;margin-bottom:10px">⚖️ Log Today's Weight <span style="font-size:11px;font-weight:400;color:var(--muted)">Day ${dayNum()+1}</span></div>
+    <div class="wt-log-row">
+      <input type="number" class="wt-input" id="wtInput" placeholder="${startWt}" step="0.1" min="30" max="200" value="${todayWt}">
+      <span style="font-size:15px;font-weight:500;color:var(--muted)">kg</span>
+      <button class="wt-btn wt-btn-${p}" onclick="logWeight()">Save</button>
+    </div>`;
+
+  // summary row
+  const current=logged.length>0?logged[logged.length-1]:startWt;
+  const first=logged.length>0?logged[0]:startWt;
+  const lost=parseFloat((startWt-current).toFixed(1));
+  const remaining=parseFloat((current-goalWt).toFixed(1));
+  logCard.innerHTML+=`
+    <div class="wt-summary">
+      <div class="wt-stat">
+        <div class="wt-stat-val" style="color:var(--${p}-primary)">${current} kg</div>
+        <div class="wt-stat-lbl">Current</div>
+      </div>
+      <div class="wt-stat">
+        <div class="wt-stat-val" style="color:${lost>0?'#4caf50':lost<0?'#f44336':'var(--muted)'}">${lost>0?'-'+lost:lost===0?'—':'+'+Math.abs(lost)} kg</div>
+        <div class="wt-stat-lbl">${p==='j'?'Lost so far':'Change'}</div>
+      </div>
+      <div class="wt-stat">
+        <div class="wt-stat-val" style="color:var(--muted)">${remaining>0?remaining+' kg to go':'Goal reached! 🎉'}</div>
+        <div class="wt-stat-lbl">To goal</div>
+      </div>
+    </div>`;
+  wrap.appendChild(logCard);
+
+  // ── INNOVATIVE CHART: WATER-DROP DOTS ────────────────────
+  const chartCard=document.createElement('div');
+  chartCard.className='weight-card';
+  chartCard.innerHTML=`<div style="font-size:14px;font-weight:600;margin-bottom:4px">📉 15-Day Weight Journey</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Each drop = one day · Size = relative weight · Tap a drop for details</div>`;
+
+  if(logged.length===0){
+    chartCard.innerHTML+=`<div class="wt-no-data"><span class="wt-no-data-emoji">💧</span>No weight logged yet.<br>Start logging daily to see your journey!</div>`;
+    wrap.appendChild(chartCard);
+    return;
+  }
+
+  // find min/max for scaling
+  const allVals=weights.filter(w=>w!==null);
+  const minWt=Math.min(...allVals,goalWt);
+  const maxWt=Math.max(...allVals,startWt);
+  const range=maxWt-minWt||1;
+
+  const dropRow=document.createElement('div');
+  dropRow.className='drop-row';
+
+  for(let d=0;d<15;d++){
+    const w=weights[d];
+    const isToday=d===dayNum();
+    const item=document.createElement('div');
+    item.className='drop-item';
+
+    if(w===null){
+      // future or not logged — ghost drop
+      const ghost=document.createElement('div');
+      ghost.className='drop-dot';
+      const sz=isToday?28:20;
+      ghost.style.cssText=`width:${sz}px;height:${sz*1.2}px;background:#eee;opacity:0.5;${isToday?'border:2px dashed var(--'+p+'-primary);':'' }`;
+      ghost.setAttribute('data-tip',`Day ${d+1}: not logged`);
+      const lbl=document.createElement('div');
+      lbl.className='drop-lbl';
+      lbl.textContent=`D${d+1}`;
+      const wlbl=document.createElement('div');
+      wlbl.className='drop-wt';
+      wlbl.style.color='var(--muted)';
+      wlbl.textContent='—';
+      item.appendChild(ghost);
+      item.appendChild(wlbl);
+      item.appendChild(lbl);
+    } else {
+      // logged — sized drop coloured by progress
+      const norm=(w-minWt)/range; // 0=lightest(best) 1=heaviest
+      const minSz=18,maxSz=40;
+      const sz=minSz+(norm*(maxSz-minSz));
+      // color: green if below start, amber if near start, red if above start
+      const delta=w-startWt;
+      let dropColor;
+      if(p==='j'){
+        dropColor=delta<=-3?'#4caf50':delta<0?'#8bc34a':delta<2?'#ff9800':'#f44336';
+      } else {
+        const devFromGoal=Math.abs(w-goalWt);
+        dropColor=devFromGoal<0.5?'#4caf50':devFromGoal<1.5?'#8bc34a':devFromGoal<3?'#ff9800':'#f44336';
+      }
+
+      const drop=document.createElement('div');
+      drop.className='drop-dot';
+      drop.style.cssText=`width:${sz}px;height:${sz*1.25}px;background:${dropColor};opacity:0.85;${isToday?'box-shadow:0 0 0 3px '+dropColor+'55;':''};margin:0 auto`;
+      drop.setAttribute('data-tip',`Day ${d+1}: ${w} kg`);
+      drop.onclick=()=>showToast(`Day ${d+1}: ${w} kg ${delta<0?'(↓'+Math.abs(delta).toFixed(1)+'kg)':delta>0?'(↑'+delta.toFixed(1)+'kg)':'(no change)'}`);
+
+      const wlbl=document.createElement('div');
+      wlbl.className='drop-wt';
+      wlbl.style.color=dropColor;
+      wlbl.textContent=w;
+
+      const lbl=document.createElement('div');
+      lbl.className='drop-lbl';
+      lbl.textContent=`D${d+1}`;
+      if(isToday){lbl.style.cssText=`color:var(--${p}-primary);font-weight:700`;}
+
+      item.appendChild(drop);
+      item.appendChild(wlbl);
+      item.appendChild(lbl);
+    }
+    dropRow.appendChild(item);
+  }
+  chartCard.appendChild(dropRow);
+
+  // legend
+  chartCard.innerHTML+=`<div class="wt-legend">
+    <span><span class="wt-legend-dot" style="background:#4caf50"></span>On track</span>
+    <span><span class="wt-legend-dot" style="background:#ff9800"></span>Near start</span>
+    <span><span class="wt-legend-dot" style="background:#f44336"></span>Above start</span>
+    <span style="color:var(--${p}-primary);font-weight:600">Bigger = heavier</span>
+  </div>`;
+  wrap.appendChild(chartCard);
+
+  // ── MINI PROGRESS BAR ─────────────────────────────────────
+  if(logged.length>0){
+    const progressCard=document.createElement('div');
+    progressCard.className='weight-card';
+    const totalToLose=Math.abs(startWt-goalWt);
+    const actualLost=Math.max(0,startWt-current);
+    const lossPct=Math.min(100,(actualLost/totalToLose)*100);
+    const daysPct=((dayNum()+1)/15)*100;
+    progressCard.innerHTML=`
+      <div style="font-size:14px;font-weight:600;margin-bottom:12px">🎯 Goal Progress</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:5px">Weight goal: ${startWt} kg → ${goalWt} kg (${Math.abs(startWt-goalWt)} kg ${p==='j'?'to lose':'target'})</div>
+      <div style="background:#eee;border-radius:20px;height:14px;overflow:hidden;margin-bottom:6px">
+        <div style="height:100%;border-radius:20px;background:linear-gradient(90deg,var(--${p}-primary),var(--${p}-mid));width:${lossPct}%;transition:width 1s ease"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:12px">
+        <span>${startWt} kg start</span>
+        <span style="color:var(--${p}-primary);font-weight:600">${lossPct.toFixed(0)}% of goal</span>
+        <span>${goalWt} kg goal</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:5px">Plan progress: Day ${dayNum()+1} of 15</div>
+      <div style="background:#eee;border-radius:20px;height:14px;overflow:hidden">
+        <div style="height:100%;border-radius:20px;background:linear-gradient(90deg,#888,#aaa);width:${daysPct}%;transition:width 1s ease"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px">
+        <span>Apr 29</span>
+        <span style="font-weight:600">${daysPct.toFixed(0)}% of plan</span>
+        <span>May 13</span>
+      </div>`;
+    wrap.appendChild(progressCard);
+  }
+}
+
+function logWeight(){
+  const val=parseFloat(document.getElementById('wtInput').value);
+  if(isNaN(val)||val<30||val>200){showToast('Enter a valid weight (30–200 kg)');return;}
+  S[`${person}_wt_${dayNum()}`]=val.toFixed(1);
+  saveState();renderWeight();
+  showToast(`⚖️ ${val} kg saved for Day ${dayNum()+1}!`);
 }
 
 // ─── AUTO REFRESH ────────────────────────────────────────────
