@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Jigar & Jigna — Family Wellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --j-primary:#1a6b8a;--j-light:#e8f4f8;--j-mid:#4a9bb5;--j-dark:#0d3d50;--j-grad:linear-gradient(135deg,#0d3d50,#1a6b8a);
+  --jg-primary:#7c5cbf;--jg-light:#f0ebfa;--jg-mid:#a480d8;--jg-dark:#3d2a6b;--jg-grad:linear-gradient(135deg,#3d2a6b,#7c5cbf);
+  --bg:#f8f6f2;--card:#fff;--text:#1a1a1a;--muted:#777;--border:rgba(0,0,0,0.07);
+  --radius:16px;--radius-sm:10px;--shadow:0 2px 16px rgba(0,0,0,0.07);--shadow-lg:0 6px 32px rgba(0,0,0,0.11);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif}
+
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:999;background:linear-gradient(160deg,#0d3d50 0%,#1a6b8a 45%,#3d2a6b 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,transform .6s}
+#splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
+.sp-emoji{font-size:54px;margin-bottom:14px;animation:pulse 2s infinite}
+.sp-title{font-family:'Playfair Display',serif;font-size:30px;color:#fff;margin-bottom:4px}
+.sp-sub{font-size:13px;color:rgba(255,255,255,.65);letter-spacing:.06em}
+.sp-dots{margin-top:20px}
+.sp-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);margin:0 3px;animation:bounce 1.2s infinite}
+.sp-dot:nth-child(2){animation-delay:.2s}.sp-dot:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.topbar-brand{font-family:'Playfair Display',serif;font-size:17px;color:#1a1a1a}
+.topbar-brand b{color:var(--jg-primary)}
+.day-badge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;letter-spacing:.03em}
+.day-badge-j{background:var(--j-light);color:var(--j-dark)}
+.day-badge-jg{background:var(--jg-light);color:var(--jg-dark)}
+
+/* PERSON TABS */
+.person-tabs{display:flex;gap:0;margin:14px 18px;background:var(--card);border-radius:14px;padding:4px;box-shadow:var(--shadow)}
+.ptab{flex:1;padding:11px 6px;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .25s;background:transparent;color:var(--muted)}
+.ptab.aj{background:var(--j-primary);color:#fff;box-shadow:0 4px 14px rgba(26,107,138,.35)}
+.ptab.ajg{background:var(--jg-primary);color:#fff;box-shadow:0 4px 14px rgba(124,92,191,.35)}
+
+/* HERO CARD */
+.hero{margin:0 18px 14px;border-radius:var(--radius);padding:18px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.hero-j{background:var(--j-grad)}.hero-jg{background:var(--jg-grad)}
+.hero::after{content:'';position:absolute;right:-20px;top:-20px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero::before{content:'';position:absolute;right:30px;bottom:-25px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero-greet{font-size:12px;color:rgba(255,255,255,.65);margin-bottom:3px}
+.hero-name{font-family:'Playfair Display',serif;font-size:24px;color:#fff;line-height:1.1}
+.hero-role{font-size:11px;color:rgba(255,255,255,.55);margin:3px 0 14px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hstat{background:rgba(255,255,255,.13);border-radius:10px;padding:7px 8px;text-align:center}
+.hstat-val{font-size:17px;font-weight:700;color:#fff;line-height:1}
+.hstat-lbl{font-size:9px;color:rgba(255,255,255,.6);margin-top:2px}
+.hero-now{margin-top:12px;background:rgba(255,255,255,.11);border-radius:10px;padding:9px 11px}
+.hero-now-lbl{font-size:10px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.05em}
+.hero-now-txt{font-size:13px;color:#fff;font-weight:500;margin-top:2px}
+
+/* PROGRESS CARDS */
+.prog-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 18px 14px}
+.pcard{background:var(--card);border-radius:var(--radius-sm);padding:10px 8px;text-align:center;box-shadow:var(--shadow)}
+.pcard-emoji{font-size:20px;margin-bottom:3px}
+.pcard-val{font-size:18px;font-weight:700}
+.pcard-val-j{color:var(--j-primary)}.pcard-val-jg{color:var(--jg-primary)}
+.pcard-lbl{font-size:10px;color:var(--muted)}
+.pbar-wrap{height:3px;background:#eee;border-radius:2px;margin-top:5px;overflow:hidden}
+.pbar{height:100%;border-radius:2px;transition:width .7s ease}
+.pbar-j{background:var(--j-primary)}.pbar-jg{background:var(--jg-primary)}
+
+/* SECTION */
+.sec-hdr{margin:16px 18px 8px}
+.sec-hdr h2{font-size:19px;color:var(--text)}
+.sec-hdr p{font-size:12px;color:var(--muted);margin-top:1px}
+
+/* WATER */
+.water-card{background:var(--card);border-radius:var(--radius);padding:14px 16px;margin:0 18px 14px;box-shadow:var(--shadow)}
+.water-ttl{font-size:14px;font-weight:600;margin-bottom:10px}
+.water-glasses{display:flex;gap:7px;flex-wrap:wrap}
+.wg{width:38px;height:38px;border-radius:9px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .2s;background:#fff}
+.wg.fj{background:var(--j-light);border-color:var(--j-primary)}
+.wg.fjg{background:var(--jg-light);border-color:var(--jg-primary)}
+.water-note{font-size:11px;color:var(--muted);margin-top:7px}
+
+/* STEPS */
+.steps-card{background:var(--card);border-radius:var(--radius);padding:14px 16px;margin:0 18px 14px;box-shadow:var(--shadow)}
+.steps-ttl{font-size:14px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.steps-row{display:flex;align-items:center;gap:10px}
+.steps-input{flex:1;padding:10px 12px;border:1.5px solid #ddd;border-radius:10px;font-size:16px;font-family:'DM Sans',sans-serif;outline:none;transition:border .2s}
+.steps-input:focus-j{border-color:var(--j-primary)}.steps-input:focus-jg{border-color:var(--jg-primary)}
+.steps-btn{padding:10px 16px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;color:#fff;font-family:'DM Sans',sans-serif;transition:all .2s}
+.steps-btn-j{background:var(--j-primary)}.steps-btn-jg{background:var(--jg-primary)}
+.steps-display{display:flex;gap:10px;margin-top:10px}
+.steps-stat{flex:1;background:var(--bg);border-radius:10px;padding:8px 10px;text-align:center}
+.steps-stat-val{font-size:17px;font-weight:700}
+.steps-stat-lbl{font-size:10px;color:var(--muted)}
+
+/* SMARTWATCH */
+.watch-card{background:var(--card);border-radius:var(--radius);padding:14px 16px;margin:0 18px 14px;box-shadow:var(--shadow)}
+.watch-ttl{font-size:14px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.watch-tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.wtab{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid #ddd;background:#fff;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.wtab.act-j{background:var(--j-light);border-color:var(--j-primary);color:var(--j-dark);font-weight:600}
+.wtab.act-jg{background:var(--jg-light);border-color:var(--jg-primary);color:var(--jg-dark);font-weight:600}
+.watch-panel{display:none}.watch-panel.show{display:block;animation:fadeUp .3s ease}
+.watch-tip{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)}
+.watch-tip:last-child{border-bottom:none}
+.wt-icon{font-size:20px;flex-shrink:0}
+.wt-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.wt-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* SCHEDULE */
+.sch-wrap{margin:0 18px 18px;display:flex;flex-direction:column;gap:7px}
+.sch-item{display:flex;gap:10px;align-items:flex-start;background:var(--card);border-radius:var(--radius-sm);padding:11px 13px;box-shadow:var(--shadow);border-left:3px solid transparent;transition:all .2s;position:relative}
+.sch-item.done{opacity:.55}.sch-item.done .si-title{text-decoration:line-through;color:var(--muted)}
+.sch-item.cur-j{border-left-color:var(--j-primary);background:var(--j-light)}
+.sch-item.cur-jg{border-left-color:var(--jg-primary);background:var(--jg-light)}
+.si-time{font-size:11px;color:var(--muted);min-width:56px;padding-top:2px;font-weight:500}
+.si-content{flex:1}
+.si-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+.si-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.si-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;margin-top:3px;font-weight:600}
+.sb-j{background:var(--j-light);color:var(--j-dark)}.sb-jg{background:var(--jg-light);color:var(--jg-dark)}
+.sb-now{background:#d4edda;color:#155724;animation:blink 2s infinite}.sb-warn{background:#fff3cd;color:#856404}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.6}}
+.si-chk{width:26px;height:26px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;background:#fff;font-size:12px}
+.si-chk.ck-j{background:var(--j-primary);border-color:var(--j-primary);color:#fff;font-weight:700}
+.si-chk.ck-jg{background:var(--jg-primary);border-color:var(--jg-primary);color:#fff;font-weight:700}
+
+/* MEALS */
+.meal-card{background:var(--card);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;box-shadow:var(--shadow)}
+.meal-hdr{padding:12px 15px;display:flex;align-items:center;justify-content:space-between}
+.meal-hdr-j{background:var(--j-dark)}.meal-hdr-jg{background:var(--jg-dark)}
+.meal-ttl{font-size:13px;font-weight:600;color:#fff}
+.meal-time{font-size:11px;background:rgba(255,255,255,.2);color:#fff;padding:2px 8px;border-radius:20px}
+.meal-body{padding:12px 14px}
+.meal-items{list-style:none}
+.meal-items li{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text)}
+.meal-items li:last-child{border-bottom:none}
+.mdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.mdot-j{background:var(--j-mid)}.mdot-jg{background:var(--jg-mid)}
+.mchk{margin-left:auto;width:22px;height:22px;border-radius:50%;border:2px solid #ddd;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .2s}
+.mchk.ej{background:var(--j-primary);border-color:var(--j-primary);color:#fff;font-weight:700}
+.mchk.ejg{background:var(--jg-primary);border-color:var(--jg-primary);color:#fff;font-weight:700}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
+.day-chip{background:var(--card);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .2s;box-shadow:var(--shadow)}
+.day-chip.td-j{border-color:var(--j-primary);background:var(--j-light)}
+.day-chip.td-jg{border-color:var(--jg-primary);background:var(--jg-light)}
+.day-chip.cp-j{background:var(--j-primary)}.day-chip.cp-jg{background:var(--jg-primary)}
+.day-num{font-size:15px;font-weight:700;color:var(--text)}
+.day-chip.cp-j .day-num,.day-chip.cp-jg .day-num{color:#fff}
+.day-chip.td-j .day-num{color:var(--j-dark)}.day-chip.td-jg .day-num{color:var(--jg-dark)}
+.day-lbl{font-size:9px;color:var(--muted)}
+.day-chip.cp-j .day-lbl,.day-chip.cp-jg .day-lbl{color:rgba(255,255,255,.7)}
+.day-detail{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);display:none}
+.day-detail.show{display:block;animation:fadeUp .3s}
+.dd-row{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--border)}
+.dd-row:last-child{border-bottom:none}
+.dd-ico{font-size:18px}
+.dd-ml-type{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.dd-ml-txt{font-size:12px;color:var(--text);margin-top:2px}
+.complete-btn{width:100%;padding:10px;border-radius:10px;border:none;color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:12px;transition:all .2s}
+.cb-j{background:var(--j-primary)}.cb-jg{background:var(--jg-primary)}
+
+/* EXERCISE */
+.ex-card{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.ex-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ex-icon-box{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.eib-j{background:var(--j-light)}.eib-jg{background:var(--jg-light)}
+.ex-ttl{font-size:14px;font-weight:600}.ex-sub{font-size:11px;color:var(--muted)}
+.ex-items{display:flex;flex-direction:column;gap:5px}
+.ex-item{display:flex;align-items:center;gap:9px;padding:8px 10px;background:var(--bg);border-radius:8px;cursor:pointer;transition:all .2s}
+.ex-item.dj{background:var(--j-light)}.ex-item.djg{background:var(--jg-light)}
+.ex-cb{width:22px;height:22px;border-radius:6px;border:2px solid #ddd;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s}
+.ex-item.dj .ex-cb{background:var(--j-primary);border-color:var(--j-primary);color:#fff;font-weight:700}
+.ex-item.djg .ex-cb{background:var(--jg-primary);border-color:var(--jg-primary);color:#fff;font-weight:700}
+.ex-name{font-size:12px;font-weight:500;flex:1}
+.ex-dur{font-size:11px;color:var(--muted)}
+
+/* EXERCISE ILLUSTRATIONS */
+.ex-illus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
+.ex-illus-card{background:var(--card);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow);cursor:pointer}
+.ex-illus-img{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.ex-illus-img-j{background:linear-gradient(135deg,#e8f4f8,#c8e8f2)}
+.ex-illus-img-jg{background:linear-gradient(135deg,#f0ebfa,#ddd0f5)}
+.ex-illus-info{padding:8px 10px}
+.ex-illus-name{font-size:12px;font-weight:600;margin-bottom:2px}
+.ex-illus-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.ex-illus-chk{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:11px;color:var(--muted)}
+.ex-illus-chkbox{width:18px;height:18px;border-radius:5px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .2s;flex-shrink:0}
+.ei-ck-j{background:var(--j-primary);border-color:var(--j-primary);color:#fff;font-weight:700}
+.ei-ck-jg{background:var(--jg-primary);border-color:var(--jg-primary);color:#fff;font-weight:700}
+
+/* MEDITATION */
+.med-card{background:var(--card);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.med-card-j{border-top:3px solid var(--j-primary)}.med-card-jg{border-top:3px solid var(--jg-primary)}
+.med-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.med-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.mi-j{background:var(--j-light)}.mi-jg{background:var(--jg-light)}
+.med-ttl{font-size:14px;font-weight:600}
+.med-sub{font-size:11px;color:var(--muted)}
+.med-steps{display:flex;flex-direction:column;gap:6px}
+.med-step{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;background:var(--bg);border-radius:8px;cursor:pointer;transition:all .2s}
+.med-step.dj{background:var(--j-light)}.med-step.djg{background:var(--jg-light)}
+.med-step-num{width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.msn-j{background:var(--j-primary)}.msn-jg{background:var(--jg-primary)}
+.med-step-info{flex:1}
+.ms-ttl{font-size:12px;font-weight:600}
+.ms-desc{font-size:11px;color:var(--muted);line-height:1.4;margin-top:1px}
+.med-step-chk{width:22px;height:22px;border-radius:6px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .2s;flex-shrink:0;cursor:pointer}
+.med-step.dj .med-step-chk{background:var(--j-primary);border-color:var(--j-primary);color:#fff;font-weight:700}
+.med-step.djg .med-step-chk{background:var(--jg-primary);border-color:var(--jg-primary);color:#fff;font-weight:700}
+
+/* TIPS */
+.tip-card{background:var(--card);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow);border-left:4px solid transparent}
+.tc-j{border-left-color:var(--j-primary)}.tc-jg{border-left-color:var(--jg-primary)}
+.tip-ttl{font-size:13px;font-weight:600;margin-bottom:4px}
+.tip-txt{font-size:12px;color:var(--muted);line-height:1.6}
+.rule-grp{margin-bottom:12px}
+.rg-ttl{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px}
+.rule-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text)}
+.rule-item:last-child{border-bottom:none}
+.rdot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.rdot-g{background:#4caf50}.rdot-r{background:#f44336}
+
+/* MOTIVATION */
+.motiv-card{margin:0 18px 14px;border-radius:var(--radius);padding:14px 16px;position:relative}
+.motiv-j{background:linear-gradient(135deg,#e8f4f8,#c8e8f2)}.motiv-jg{background:linear-gradient(135deg,#f0ebfa,#ddd0f5)}
+.motiv-q{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--text);line-height:1.6}
+.motiv-a{font-size:11px;color:var(--muted);margin-top:7px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--card);border-top:1px solid var(--border);display:flex;padding:6px 0 env(safe-area-inset-bottom,6px);box-shadow:0 -2px 16px rgba(0,0,0,.07)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 2px;border:none;background:transparent;cursor:pointer;transition:all .2s}
+.nav-icon{font-size:20px;transition:transform .2s}
+.nav-lbl{font-size:10px;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:500}
+.nav-btn.aj .nav-icon{transform:scale(1.12)}.nav-btn.aj .nav-lbl{color:var(--j-primary);font-weight:600}
+.nav-btn.ajg .nav-icon{transform:scale(1.12)}.nav-btn.ajg .nav-lbl{color:var(--jg-primary);font-weight:600}
+
+/* PANELS */
+.panel{display:none;padding-bottom:90px;animation:fadeUp .3s ease}
+.panel.active{display:block}
+
+/* TOAST */
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;z-index:200;white-space:nowrap;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* SYNC INDICATOR */
+.sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-left:6px}
+.sync-ok{background:#4caf50}.sync-saving{background:#ff9800;animation:blink 1s infinite}.sync-off{background:#f44336}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="sp-emoji">🌿</div>
+  <h1 class="sp-title">Family Wellness</h1>
+  <p class="sp-sub">Jigar & Jigna · 15-Day Journey · From Apr 29</p>
+  <div class="sp-dots"><span class="sp-dot"></span><span class="sp-dot"></span><span class="sp-dot"></span></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="topbar">
+  <div class="topbar-brand">Wellness<b>.</b><span class="sync-dot sync-ok" id="syncDot" title="Data saved"></span></div>
+  <div class="day-badge day-badge-j" id="dayBadge">Day 1 of 15</div>
+</div>
+
+<div class="person-tabs">
+  <button class="ptab aj" id="btn-j" onclick="sp('j')">👨 Jigar</button>
+  <button class="ptab" id="btn-jg" onclick="sp('jg')">👩 Jigna</button>
+</div>
+
+<!-- TODAY -->
+<div id="panel-today" class="panel active">
+  <div class="hero hero-j" id="heroCard">
+    <div class="hero-greet" id="hGreet">Good morning</div>
+    <div class="hero-name" id="hName">Jigar</div>
+    <div class="hero-role" id="hRole">IT Professional · Office 10AM–7PM</div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val" id="hDay">1</div><div class="hstat-lbl">Day of 15</div></div>
+      <div class="hstat"><div class="hstat-val" id="hDone">0</div><div class="hstat-lbl">Done today</div></div>
+      <div class="hstat"><div class="hstat-val" id="hStreak">0🔥</div><div class="hstat-lbl">Streak</div></div>
+    </div>
+    <div class="hero-now">
+      <div class="hero-now-lbl">⏰ Right now you should be</div>
+      <div class="hero-now-txt" id="hNow">Loading...</div>
+    </div>
+  </div>
+
+  <div class="prog-row">
+    <div class="pcard"><div class="pcard-emoji">🥗</div><div class="pcard-val pcard-val-j" id="pMeals">0/3</div><div class="pcard-lbl">Meals</div><div class="pbar-wrap"><div class="pbar pbar-j" id="pMealsBar" style="width:0%"></div></div></div>
+    <div class="pcard"><div class="pcard-emoji">🏃</div><div class="pcard-val pcard-val-j" id="pEx">0/4</div><div class="pcard-lbl">Exercise</div><div class="pbar-wrap"><div class="pbar pbar-j" id="pExBar" style="width:0%"></div></div></div>
+    <div class="pcard"><div class="pcard-emoji">🧘</div><div class="pcard-val pcard-val-j" id="pMed">0/3</div><div class="pcard-lbl">Meditation</div><div class="pbar-wrap"><div class="pbar pbar-j" id="pMedBar" style="width:0%"></div></div></div>
+  </div>
+
+  <div class="water-card">
+    <div class="water-ttl">💧 Water Tracker — 3 litres / day</div>
+    <div class="water-glasses" id="waterGlasses"></div>
+    <div class="water-note" id="waterNote">0 of 8 glasses done</div>
+  </div>
+
+  <div class="steps-card">
+    <div class="steps-ttl">👟 Step Counter <small style="font-size:11px;font-weight:400;color:var(--muted)">— from your smartwatch</small></div>
+    <div class="steps-row">
+      <input type="number" class="steps-input" id="stepsInput" placeholder="Enter steps from watch" min="0" max="50000">
+      <button class="steps-btn steps-btn-j" id="stepsBtn" onclick="logSteps()">Log</button>
+    </div>
+    <div class="steps-display">
+      <div class="steps-stat"><div class="steps-stat-val" id="stepsToday" style="color:var(--j-primary)">0</div><div class="steps-stat-lbl">Steps today</div></div>
+      <div class="steps-stat"><div class="steps-stat-val" id="stepsGoal" style="color:#4caf50">8,000</div><div class="steps-stat-lbl">Daily goal</div></div>
+      <div class="steps-stat"><div class="steps-stat-val" id="stepsKm" style="color:var(--muted)">0</div><div class="steps-stat-lbl">~km walked</div></div>
+    </div>
+    <div class="pbar-wrap" style="margin-top:8px"><div class="pbar pbar-j" id="stepsBar" style="width:0%"></div></div>
+  </div>
+
+  <div class="motiv-card motiv-j" id="motivCard">
+    <div class="motiv-q" id="motivQ">"The groundwork of all happiness is health."</div>
+    <div class="motiv-a" id="motivA">— Leigh Hunt · Day 1 of 15</div>
+  </div>
+
+  <div class="sec-hdr"><h2>Today's Schedule</h2><p id="schDate">Loading...</p></div>
+  <div class="sch-wrap" id="schWrap"></div>
+</div>
+
+<!-- MEALS -->
+<div id="panel-meals" class="panel">
+  <div class="sec-hdr"><h2>Today's Meals</h2><p id="mealDayLbl">Tap each item when eaten</p></div>
+  <div style="margin:0 18px 18px" id="mealsWrap"></div>
+</div>
+
+<!-- EXERCISE + MEDITATION -->
+<div id="panel-exercise" class="panel">
+  <div class="sec-hdr"><h2>Exercise & Meditation</h2><p id="exSub">Check off as you complete</p></div>
+  <div style="margin:0 18px 18px" id="exWrap"></div>
+</div>
+
+<!-- SMARTWATCH -->
+<div id="panel-watch" class="panel">
+  <div class="sec-hdr"><h2>Smart Watch Guide</h2><p>How to use your watch for this plan</p></div>
+  <div style="margin:0 18px 18px" id="watchWrap"></div>
+</div>
+
+<!-- 15-DAY CALENDAR -->
+<div id="panel-calendar" class="panel">
+  <div class="sec-hdr"><h2>15-Day Journey</h2><p>Apr 29 – May 13, 2026 · Tap a day to see details</p></div>
+  <div style="margin:0 18px 18px">
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="day-detail" id="dayDetail"></div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div id="panel-tips" class="panel">
+  <div class="sec-hdr"><h2>Tips & Rules</h2><p>Daily guidance for success</p></div>
+  <div style="margin:0 18px 18px" id="tipsWrap"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-btn aj" id="nav-today" onclick="switchPanel('today')"><span class="nav-icon">🏠</span><span class="nav-lbl">Today</span></button>
+  <button class="nav-btn" id="nav-meals" onclick="switchPanel('meals')"><span class="nav-icon">🥗</span><span class="nav-lbl">Meals</span></button>
+  <button class="nav-btn" id="nav-exercise" onclick="switchPanel('exercise')"><span class="nav-icon">💪</span><span class="nav-lbl">Exercise</span></button>
+  <button class="nav-btn" id="nav-watch" onclick="switchPanel('watch')"><span class="nav-icon">⌚</span><span class="nav-lbl">Watch</span></button>
+  <button class="nav-btn" id="nav-calendar" onclick="switchPanel('calendar')"><span class="nav-icon">📅</span><span class="nav-lbl">15 Days</span></button>
+</div>
+
+<script>
+// ─── CONSTANTS ───────────────────────────────────────────────
+const START = new Date('2026-04-29T00:00:00');
+const STORAGE_KEY = 'wellness_v5';
+
+const QUOTES = [
+  ["The groundwork of all happiness is health.","Leigh Hunt"],
+  ["Take care of your body. It's the only place you have to live.","Jim Rohn"],
+  ["Health is not about the weight you lose, but the life you gain.",""],
+  ["Every day is a new beginning. Take a deep breath and start again.",""],
+  ["Small steps every day lead to big results.",""],
+  ["Your body can do it. It's your mind you have to convince.",""],
+  ["Discipline is choosing between what you want now and what you want most.",""],
+  ["A healthy outside starts from the inside.","Robert Urich"],
+  ["The secret of getting ahead is getting started.","Mark Twain"],
+  ["You don't have to be great to start, but you have to start to be great.",""],
+  ["Strength does not come from the body. It comes from the will.",""],
+  ["Believe in yourself and all that you are.",""],
+  ["Progress, not perfection.",""],
+  ["Every accomplishment starts with the decision to try.",""],
+  ["Day 15 — you made it! Now make it a lifestyle.",""]
+];
+
+// ─── SCHEDULES ───────────────────────────────────────────────
+const J_WD = [
+  {t:"6:30 AM",title:"Wake up",desc:"Drink warm water immediately. Eat soaked methi seeds.",icon:"☀️"},
+  {t:"6:40 AM",title:"Morning ritual",desc:"Methi seeds → 30ml amla juice → warm lemon water with cinnamon.",icon:"🍋"},
+  {t:"6:45 AM",title:"Fasted brisk walk + Pranayama",desc:"35–40 min brisk walk then 10 min Anulom Vilom + Kapalbhati. Your prime fat-burning window!",icon:"🚶",badge:"40 min"},
+  {t:"7:30 AM",title:"Meditation — Mindful Start",desc:"5 min body scan + breath awareness. See Meditation tab for full routine.",icon:"🧘",badge:"5 min"},
+  {t:"8:00 AM",title:"Breakfast",desc:"See today's meal plan. Chaas or green tea alongside. No sugar!",icon:"🍽️",badge:"Key meal"},
+  {t:"9:30 AM",title:"Leave for office",desc:"Carry: water bottle + fruit for 11AM + roasted chana for 4:30PM.",icon:"💼"},
+  {t:"11:00 AM",title:"Mid-morning snack",desc:"1 fruit (rotate daily) + soaked chia seeds. Green tea if available.",icon:"🍎"},
+  {t:"1:00 PM",title:"Lunch",desc:"SALAD FIRST → Dal → Sabzi → Black chana → Chaas. Walk 10 min after!",icon:"🥗",badge:"Biggest meal"},
+  {t:"4:30 PM",title:"Evening snack",desc:"Green tea first → roasted chana 25g + almonds 5-6 + walnuts 2.",icon:"🥜",badge:"Danger zone"},
+  {t:"7:15 PM",title:"Return home",desc:"Do NOT snack between office and dinner. Jeera water if hungry.",icon:"🏠"},
+  {t:"7:30 PM",title:"Dinner",desc:"Clear soup (full bowl first) → Dal → Sabzi. No roti, no rice.",icon:"🍲",badge:"Light meal"},
+  {t:"8:00 PM",title:"Post-dinner walk",desc:"20 min neighbourhood walk. Non-negotiable.",icon:"🌙",badge:"20 min"},
+  {t:"9:30 PM",title:"Evening Meditation",desc:"10 min progressive relaxation before sleep. Reduces cortisol.",icon:"🧘",badge:"10 min"},
+  {t:"10:30 PM",title:"Bedtime prep",desc:"Soak methi seeds. Warm ajwain water or haldi doodh (no sugar). Sleep by 11PM.",icon:"😴"}
+];
+const J_WE = [
+  {t:"6:30 AM",title:"Wake up",desc:"Warm lemon water + methi seeds. Quick 5 min stretch.",icon:"☀️"},
+  {t:"6:40 AM",title:"Pre-cricket meditation",desc:"5 min focused breathing to prime mental alertness before sport.",icon:"🧘",badge:"5 min"},
+  {t:"6:45 AM",title:"Pre-cricket fuel",desc:"Small poha or 2 idlis with sambar — play on energy, not empty!",icon:"🏏",badge:"Cricket day"},
+  {t:"7:00 AM",title:"CRICKET",desc:"3 hours! Carry 1L water + coconut water. Sip between overs. No sugary drinks.",icon:"🏏",badge:"3 hours"},
+  {t:"10:30 AM",title:"Post-cricket recovery",desc:"Sprout chaat (black chana+chickpeas+cucumber+tomato+lemon+jeera) + chaas 300ml.",icon:"💪"},
+  {t:"1:30 PM",title:"Lunch",desc:"Salad first → Dal → Sabzi + boiled chana. Slightly larger portion today.",icon:"🥗"},
+  {t:"4:30 PM",title:"Snack",desc:"Roasted chana + almonds + walnuts OR steamed corn + lemon.",icon:"🥜"},
+  {t:"7:30 PM",title:"Dinner",desc:"Soup first → Dal → Sabzi. No roti, no rice. Weekend ≠ cheat day!",icon:"🍲"},
+  {t:"8:00 PM",title:"Family walk",desc:"Post-dinner walk with Jigna and son. Great family time!",icon:"🌙",badge:"Family time"},
+  {t:"9:30 PM",title:"Evening Meditation",desc:"10 min relaxation. Review your cricket performance and the day.",icon:"🧘",badge:"10 min"},
+  {t:"10:30 PM",title:"Bedtime",desc:"Soak methi seeds. Haldi doodh. Sleep by 11PM.",icon:"😴"}
+];
+const JG_WD = [
+  {t:"6:30 AM",title:"Wake up",desc:"Warm lemon water with pinch of cinnamon. Calm start.",icon:"☀️"},
+  {t:"6:40 AM",title:"Morning Meditation",desc:"8 min sunrise meditation + intention setting for the teaching day.",icon:"🧘",badge:"8 min"},
+  {t:"6:50 AM",title:"Yoga & morning walk",desc:"15 min Surya Namaskar + 15 min walk. Flexibility and energy focus.",icon:"🧘",badge:"30 min"},
+  {t:"7:30 AM",title:"Family morning",desc:"Help with son's morning. Cook breakfast for everyone.",icon:"👨‍👩‍👦"},
+  {t:"8:00 AM",title:"Breakfast",desc:"See today's meal plan. Normal portion — energy for 6 hours of teaching!",icon:"🍽️",badge:"Full breakfast"},
+  {t:"9:15 AM",title:"Leave for college",desc:"Carry: water, fruit for 11AM, healthy snack for between lectures.",icon:"🎓"},
+  {t:"11:00 AM",title:"Mid-morning break",desc:"1 fruit + almonds/walnuts. Green tea or coconut water.",icon:"🍎"},
+  {t:"1:00 PM",title:"Lunch",desc:"Salad first → Dal + sabzi + chickpeas → Chaas/curd. Proper full lunch — don't skip!",icon:"🥗",badge:"Don't skip"},
+  {t:"4:00 PM",title:"Afternoon snack",desc:"Roasted chana + walnuts OR cucumber+carrot sticks.",icon:"🥕"},
+  {t:"4:30 PM",title:"Between-lecture mini meditation",desc:"3 min desk breathing exercise. Clears mental fatigue.",icon:"🧘",badge:"3 min"},
+  {t:"6:30 PM",title:"Return home",desc:"10–15 min walk near home. Decompress from the day.",icon:"🏠"},
+  {t:"7:30 PM",title:"Dinner",desc:"Soup → Dal + sabzi + roti (1-2). Balanced dinner — this is maintenance.",icon:"🍽️",badge:"Balanced"},
+  {t:"8:15 PM",title:"Family walk",desc:"Post-dinner walk with Jigar and son. Bonding + digestion!",icon:"🌙",badge:"Family time"},
+  {t:"10:00 PM",title:"Evening Meditation",desc:"10 min yoga nidra or body scan. Deep rest for the teaching brain.",icon:"🧘",badge:"10 min"},
+  {t:"10:30 PM",title:"Wind down",desc:"Warm haldi doodh or ajwain water. Sleep by 11PM.",icon:"😴"}
+];
+const JG_WE = [
+  {t:"6:30 AM",title:"Wake up",desc:"Warm lemon water. Relaxed morning.",icon:"☀️"},
+  {t:"6:45 AM",title:"Extended Yoga session",desc:"While Jigar plays cricket — 35 min gentle yoga at home.",icon:"🧘",badge:"35 min"},
+  {t:"7:30 AM",title:"Morning meditation",desc:"10 min gratitude and body scan meditation.",icon:"🧘",badge:"10 min"},
+  {t:"8:30 AM",title:"Leisurely breakfast",desc:"Cook a special breakfast — dosa+sambar, or methi thepla+chaas. Make for son too!",icon:"🍽️"},
+  {t:"11:00 AM",title:"Mid-morning",desc:"Fruit + coconut water. Light snack.",icon:"🍎"},
+  {t:"1:30 PM",title:"Family lunch",desc:"Cook together. Shared dal + sabzi. Roti/rice for Jigna.",icon:"👨‍👩‍👦",badge:"Cook together"},
+  {t:"4:30 PM",title:"Snack",desc:"Light healthy snack. Chaas or coconut water.",icon:"☕"},
+  {t:"7:30 PM",title:"Dinner",desc:"Soup + dal + sabzi. Roti if desired. By 8PM.",icon:"🍲"},
+  {t:"8:15 PM",title:"Family walk",desc:"Evening walk as a family. Fresh air and bonding.",icon:"🌙"},
+  {t:"10:00 PM",title:"Evening Meditation",desc:"10 min yoga nidra. Weekend reset.",icon:"🧘",badge:"10 min"},
+  {t:"10:30 PM",title:"Wind down",desc:"Haldi doodh. Sleep by 11PM.",icon:"😴"}
+];
+
+// ─── MEALS ───────────────────────────────────────────────────
+const J_MEALS = [
+  {type:"Breakfast",time:"8:00 AM",rotate:["Vegetable Poha + Plain Chaas","Idli (3) + Sambar","Besan Vegetable Chilla + Chaas","Savory Vegetable Oats + Green Tea","Vegetable Upma + Chaas","Plain Dosa + Sambar","Methi Thepla + Sprout Chaat"]},
+  {type:"Lunch",time:"1:00 PM",rotate:["Salad + Moong Dal + Tomato Sabzi + Chickpeas + Chaas","Salad + Toor Dal + Shimla Mirch + Black Chana + Chaas","Salad + Chana Dal + Cabbage Sabzi + Chickpeas","Salad + Toor Dal + Tomato Sabzi + Chickpeas + Chaas","Salad + Moong Dal + Shimla Mirch + Black Chana","Salad + Chana Dal + Tomato Sabzi + Chickpeas","Salad + Moong Dal + Cabbage Sabzi + Sprout Chaat"]},
+  {type:"Dinner",time:"7:30 PM",rotate:["Clear Veg Soup + Toor Dal + Cabbage Sabzi","Clear Veg Soup + Chana Dal + Tomato Sabzi","Clear Veg Soup + Moong Dal + Shimla Mirch Sabzi","Clear Veg Soup + Toor Dal + Cabbage Sabzi","Clear Veg Soup + Chana Dal + Tomato Sabzi","Clear Veg Soup + Moong Dal + Cabbage Sabzi","Clear Veg Soup + Toor Dal + Shimla Mirch Sabzi"]}
+];
+const JG_MEALS = [
+  {type:"Breakfast",time:"8:00 AM",rotate:["Vegetable Poha + Chaas","Idli + Sambar + Coconut Chutney","Besan Chilla + Chaas + Sprout Chaat","Dosa + Sambar + Chutney","Methi Thepla + Chaas","Savory Oats + Green Tea","Vegetable Upma + Chaas"]},
+  {type:"Lunch",time:"1:00 PM",rotate:["Salad + Moong Dal + Sabzi + Roti + Curd","Salad + Toor Dal + Shimla Mirch + Rice + Curd","Salad + Chana Dal + Cabbage + Roti + Curd","Dal + Sabzi + Roti + Chickpeas + Curd","Moong Dal + Shimla Mirch + Rice + Curd","Toor Dal + Tomato Sabzi + Roti + Curd","Chana Dal + Cabbage + Roti + Sprout Chaat"]},
+  {type:"Dinner",time:"7:30 PM",rotate:["Soup + Toor Dal + Sabzi + Roti","Soup + Moong Dal + Cabbage + Roti","Soup + Chana Dal + Shimla Mirch + Roti","Soup + Toor Dal + Tomato Sabzi + Rice","Soup + Moong Dal + Sabzi + Roti","Soup + Chana Dal + Cabbage + Roti","Soup + Toor Dal + Shimla Mirch + Rice"]}
+];
+
+// ─── EXERCISE ILLUSTRATIONS ──────────────────────────────────
+const J_ILLUS = [
+  {emoji:"🚶",name:"Brisk Walk",desc:"Heel-to-toe stride, arms swinging. 40 min fasted. Burns belly fat directly.",target:"Belly fat, stamina",key:"illus_walk"},
+  {emoji:"🏋️",name:"Bodyweight Squats",desc:"Feet shoulder-width, sit back. 20 reps × 3 sets. Great for metabolism.",target:"Thighs, glutes, metabolism",key:"illus_squat"},
+  {emoji:"💪",name:"Push-ups",desc:"Keep core tight, full range. Start with knee push-ups if needed.",target:"Chest, shoulders, triceps",key:"illus_push"},
+  {emoji:"⏱️",name:"Plank Hold",desc:"Forearms flat, body straight. 30 sec hold. Core and posture.",target:"Core, lower back",key:"illus_plank"},
+  {emoji:"🦵",name:"Lunges",desc:"Step forward, knee at 90°. Alternate legs × 12 each.",target:"Legs, balance, hips",key:"illus_lunge"},
+  {emoji:"🏔️",name:"Mountain Climbers",desc:"Fast alternating knee drives. 20 reps. Great cardio burst.",target:"Full body, cardio",key:"illus_mtn"},
+  {emoji:"🌉",name:"Glute Bridge",desc:"Lie back, feet flat. Lift hips, hold 2 sec. × 15 reps.",target:"Glutes, lower back",key:"illus_bridge"},
+  {emoji:"🏏",name:"Cricket (Weekend)",desc:"3 hours — fielding, batting, bowling. Burns significant calories and builds agility.",target:"Full body, cardio, agility",key:"illus_cricket"},
+];
+const JG_ILLUS = [
+  {emoji:"🌅",name:"Surya Namaskar",desc:"4 rounds, flowing breath. Complete body workout in 5 min. Perfect for teachers.",target:"Full body, flexibility",key:"illus_surya"},
+  {emoji:"🧘",name:"Trikonasana",desc:"Triangle pose. Opens hips and chest. Relieves teaching-posture stiffness.",target:"Hips, spine, balance",key:"illus_trikona"},
+  {emoji:"🌿",name:"Vrikshasana",desc:"Tree pose. Improves balance and concentration. Great before lecture days.",target:"Balance, focus, ankles",key:"illus_vriksha"},
+  {emoji:"🔄",name:"Spinal Twist",desc:"Seated twist both sides. Relieves lower back after long standing hours.",target:"Spine, digestion, back",key:"illus_twist"},
+  {emoji:"🚶",name:"Brisk Walk",desc:"20–25 min daily walk. Moderate pace. Maintains weight and mental wellbeing.",target:"Cardio, mood, weight maintenance",key:"illus_walk"},
+  {emoji:"🙆",name:"Forward Bend",desc:"Seated or standing. Stretches hamstrings and calms the nervous system.",target:"Flexibility, stress relief",key:"illus_bend"},
+];
+
+// ─── MEDITATION PLANS ────────────────────────────────────────
+const J_MED = [
+  {icon:"🌅",title:"Morning: Mindful Start",sub:"5 min · Before breakfast",steps:[
+    {title:"Breath Counting",desc:"Sit comfortably, close eyes. Breathe in for 4 counts, hold 2, out for 6. Repeat 10 times."},
+    {title:"Body Scan",desc:"Mentally scan from feet to head. Notice tension without judging. Breathe into tight spots."},
+    {title:"Intention Setting",desc:"Set one clear intention for the day: 'I will eat slowly' or 'I will walk after lunch'."}
+  ]},
+  {icon:"🌙",title:"Evening: Wind-Down",sub:"10 min · After post-dinner walk",steps:[
+    {title:"4-7-8 Breathing",desc:"Breathe in 4 sec, hold 7 sec, out 8 sec. Repeat 4 cycles. Activates parasympathetic system."},
+    {title:"Progressive Muscle Relaxation",desc:"Tense and release each muscle group from feet to shoulders. Takes 5 min. Deep sleep follows."},
+    {title:"Day Review",desc:"Mentally acknowledge 3 things you did well today. No self-criticism. Only appreciation."}
+  ]},
+  {icon:"💼",title:"Office: Desk Reset",sub:"3 min · Any break",steps:[
+    {title:"Box Breathing",desc:"In 4, hold 4, out 4, hold 4. Repeat 5 times. Reduces desk stress and improves focus."},
+    {title:"Neck + Shoulder Release",desc:"Slow neck rolls. Then roll shoulders back × 10. Instantly reduces screen tension."},
+    {title:"5-4-3-2-1 Grounding",desc:"Name 5 things you see, 4 you hear, 3 you can touch, 2 you smell, 1 you taste. Reset."}
+  ]}
+];
+const JG_MED = [
+  {icon:"🌅",title:"Sunrise: Intention Meditation",sub:"8 min · Before yoga",steps:[
+    {title:"Gratitude Breath",desc:"3 deep breaths. With each exhale, mentally say one thing you're grateful for today."},
+    {title:"Visualisation",desc:"Picture yourself teaching with complete energy and clarity. See students engaged. 2 min."},
+    {title:"Mantra + Breath",desc:"Silently repeat 'So' on inhale, 'Hum' on exhale. 4 min. Ancient Vedic breathing meditation."}
+  ]},
+  {icon:"📚",title:"Between Lectures: Desk Breathing",sub:"3 min · At college",steps:[
+    {title:"Alternate Nostril Breath",desc:"Close right nostril, inhale left. Close left, exhale right. Repeat 10 cycles. Balances brain hemispheres."},
+    {title:"Shoulder Reset",desc:"Roll shoulders back, open chest, breathe deeply. 5 breaths. Reverses lecture posture."},
+    {title:"Micro-mindfulness",desc:"Feel both feet on the floor. One conscious breath. Return to the room fully. 30 seconds."}
+  ]},
+  {icon:"🌙",title:"Evening: Yoga Nidra",sub:"10 min · Before sleep",steps:[
+    {title:"Body Scan",desc:"Lie flat. Move awareness slowly from right thumb to left little toe. Take 4 min."},
+    {title:"Opposite Sensations",desc:"Feel heaviness, then lightness. Feel warmth, then coolness. 2 min each. Balances nervous system."},
+    {title:"Sankalpa",desc:"Set a positive resolve: 'I am healthy and full of energy'. Repeat 3 times as you drift to sleep."}
+  ]}
+];
+
+// ─── SMARTWATCH DATA ─────────────────────────────────────────
+const WATCH_DATA = {
+  general:[
+    {icon:"👟",title:"Sync steps every morning",desc:"Open your watch app (Fitbit / Mi Fit / Apple Health / Samsung Health) and note your current step count. Log it here in the Steps section each day."},
+    {icon:"💓",title:"Resting heart rate goal",desc:"Your resting heart rate should come down over 15 days with regular exercise. Target: below 72 BPM. Check it every morning before getting out of bed."},
+    {icon:"😴",title:"Sleep score matters",desc:"Check your sleep score each morning. Target 7–8 hours with >80% sleep quality. Poor sleep directly affects hunger and fat loss."},
+    {icon:"🔥",title:"Calorie burn tracking",desc:"Enable 'active minutes' or 'exercise ring' on your watch. For weight loss, target 300+ active calories on weekdays and 500+ on cricket weekends."},
+    {icon:"📊",title:"Weekly review",desc:"Every Sunday morning, open your watch's weekly report. Note average steps, sleep score, and resting heart rate. Share with your partner for accountability!"},
+  ],
+  jigar:[
+    {icon:"🏃",title:"Set step goal: 8,000/day",desc:"Jigar's office job means limited movement. Set your watch step goal to 8,000 steps. Enable hourly reminders — stand up and walk for 2 min every hour during office time."},
+    {icon:"⏰",title:"Walk reminder at 1:10 PM",desc:"Set a recurring alarm at 1:10 PM labelled 'Post-lunch walk'. This is the most important 10-min walk of the day for blood sugar management."},
+    {icon:"🏏",title:"Cricket session tracking",desc:"Start a 'Cricket' or 'Outdoor Sport' session on your watch every Saturday and Sunday at 7 AM. This logs accurate calorie burn for the 3-hour session."},
+    {icon:"💧",title:"Hydration reminders",desc:"Enable hydration reminders every 90 minutes on your watch. Many watches have this built in — Fitbit, Mi Watch, and Samsung Watch all support it."},
+    {icon:"🌙",title:"Wind-down alarm",desc:"Set a 'wind-down' alarm at 9:15 PM. This is your signal to start the evening meditation and prepare for sleep. Consistent sleep time massively improves results."},
+  ],
+  jigna:[
+    {icon:"🧘",title:"Yoga session tracking",desc:"Start a 'Yoga' session on your watch each morning before Surya Namaskar. Even 20 min of yoga counts toward your active minutes and shows as meaningful movement."},
+    {icon:"🏫",title:"College walking",desc:"Enable 'auto-detect walks' on your watch. Between lectures, your steps auto-count. Target 2,000 steps just from college movement (corridors, stairs, parking)."},
+    {icon:"💓",title:"Stress monitoring",desc:"Many watches (Fitbit, Apple Watch, Galaxy Watch) measure stress via HRV. Check your stress level after long lecture blocks. If high — that's your cue for a breathing break."},
+    {icon:"📖",title:"Stand goal for teaching hours",desc:"Teaching involves a lot of standing, but also a lot of sitting for corrections. Set your stand goal to 10 hours. Your watch will remind you to move during desk time."},
+    {icon:"🌙",title:"Sleep staging",desc:"Enable automatic sleep tracking. As a maintenance plan user, aim for 80%+ sleep quality consistently. Your watch's sleep stages (light/deep/REM) tell you how restorative your rest is."},
+  ]
+};
+
+// ─── RULES ───────────────────────────────────────────────────
+const J_RULES = {
+  do:["Eat salad before every lunch and dinner","Finish dinner before 8 PM","Carry lunch from home","Drink 3–3.5 litres water daily","Walk after every meal","Sleep by 11 PM every night","Take stairs always at office","Log steps from watch daily","Do morning meditation before leaving"],
+  dont:["No roti or rice at dinner for 15 days","No sugar in chai, biscuits, office treats","No canteen fried snacks","No eating after 9 PM","No lying down after meals","No skipping breakfast","No cold drinks or packaged juices"]
+};
+const JG_RULES = {
+  do:["Eat regular balanced meals — don't skip college lunch","Stay well hydrated — teaching is demanding","Carry healthy snacks to college","Eat a proper dinner — maintenance needs fuel","Sleep 7–8 hours — non-negotiable","Do Surya Namaskar every morning","Log steps from watch daily","Enjoy food variety — she likes everything!"],
+  dont:["Skipping meals due to busy lecture schedule","Too much chai with sugar during teaching","Packaged snacks or canteen fried foods","Eating dinner very late (after 8:30 PM)","Staying sedentary all day without movement breaks"]
+};
+
+// ─── TIPS ────────────────────────────────────────────────────
+const J_TIPS=[
+  {t:"Fasted walk is gold",b:"Walking before breakfast burns stored fat directly. Even 30 min makes a measurable difference over 15 days."},
+  {t:"Salad first, always",b:"Eating raw salad before cooked food fills your stomach with fibre and water. You naturally eat 20% less of everything after."},
+  {t:"Office lunch is everything",b:"Carry lunch from home. Office canteen food is unpredictable in oil content. Home-packed dal and sabzi wins every time."},
+  {t:"Evening snack strategy",b:"Pack your roasted chana + almonds before leaving home. Having them ready prevents the 4:30 PM canteen run."},
+  {t:"Dinner timing is crucial",b:"Finishing dinner by 8 PM gives 10+ hours before breakfast. This overnight fast is one of the most powerful tools."},
+  {t:"Weekend — cricket is exercise",b:"3 hours of cricket burns significant calories. Don't worry about missing your walk on cricket days."},
+  {t:"Hydration during cricket",b:"Sip water and coconut water between overs. Dehydration slows recovery and increases hunger later."},
+  {t:"Sleep matters as much as food",b:"Poor sleep elevates ghrelin (hunger hormone) by 25%. 7-8 hours isn't optional — it directly affects results."},
+  {t:"Take the stairs",b:"At a desk job, every movement counts. Take stairs, walk during calls, stand up every 45 min."},
+  {t:"Halfway check-in",b:"Day 8 — weigh yourself. Use that momentum for the second week."},
+  {t:"Week 3 intensity",b:"Your body has adapted. Increase walk pace and add jogging intervals. Keeps fat burning active."},
+  {t:"Post-dinner walk",b:"A 20-min walk after dinner significantly lowers post-meal blood sugar. Compounding positive effect."},
+  {t:"Weekends don't undo progress",b:"Cricket burns calories but be mindful of post-match social eating. Your snack prep is your armour."},
+  {t:"Day 14 — don't relax now",b:"The last 2 days determine whether you build a habit or just finish a plan."},
+  {t:"Day 15 — make it a lifestyle",b:"Which habits felt easy? Do those forever. That's the real goal."}
+];
+const JG_TIPS=[
+  {t:"Maintenance is a skill too",b:"Your goal is energy through long teaching days. Consistent good eating is harder than it looks."},
+  {t:"Don't skip college lunch",b:"Teaching 4–6 hours is physically and mentally demanding. A proper lunch fuels afternoon lectures."},
+  {t:"Prep snacks the evening before",b:"Pack tomorrow's snack tonight. Carrot sticks, roasted chana in a small box saves time and prevents canteen temptation."},
+  {t:"Between lectures — move!",b:"5 min walk between back-to-back lectures prevents postural stiffness and refreshes your mind."},
+  {t:"Weekend yoga is your recharge",b:"Your quiet, personal time. Use it. 30 min of yoga reduces cortisol and sets a calm tone for the week."},
+  {t:"Hydration for voice health",b:"As a teacher, your voice is your tool. Staying well-hydrated protects your vocal cords."},
+  {t:"Family meals are shared effort",b:"Dal and sabzi base is the same for both. Cook once, serve everyone. Small planning, big time saving."},
+  {t:"Green tea between lectures",b:"One cup between 3–4 PM reduces afternoon energy dips. Better than chai with sugar."},
+  {t:"Variety keeps it sustainable",b:"You like everything — use that! Try a new sabzi each week. Variety prevents diet fatigue."},
+  {t:"Sleep is non-negotiable",b:"A tired teacher is an ineffective teacher. 7–8 hours is your professional investment."},
+  {t:"Sun exposure matters",b:"Morning walk in sunlight (before 10 AM) for 15 min boosts mood and immune function."},
+  {t:"Surya Namaskar is complete exercise",b:"4 rounds works every major muscle group, improves flexibility, takes only 5 minutes."},
+  {t:"College canteen strategy",b:"If you must eat there, choose idli/dosa over fried options. Keep your packed snack ready."},
+  {t:"Day 14 — notice the difference",b:"More energy? Better sleep? Clearer mind? These are your real wins."},
+  {t:"Day 15 — teach what you practised",b:"You've shown your family what disciplined, joyful eating looks like. That's a priceless lesson."}
+];
+
+// ─── STATE ───────────────────────────────────────────────────
+let person = 'j';
+let activePanel = 'today';
+let S = {};
+
+function loadState(){try{S=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch(e){S={};}}
+function saveState(){
+  document.getElementById('syncDot').className='sync-dot sync-saving';
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(S));}catch(e){}
+  setTimeout(()=>document.getElementById('syncDot').className='sync-dot sync-ok',800);
+}
+
+// ─── HELPERS ────────────────────────────────────────────────
+function dayNum(){const n=Math.floor((new Date()-START)/86400000);return Math.max(0,Math.min(14,n));}
+function dayIdx(){return dayNum()%7;}
+function isWeekend(){const d=new Date(START);d.setDate(d.getDate()+dayNum());const w=d.getDay();return w===0||w===6;}
+function greet(){const h=new Date().getHours();return h<12?'Good morning':h<17?'Good afternoon':'Good evening';}
+function sk(k){return `${person}_${dayNum()}_${k}`;}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function dateStr(offset){const d=new Date(START);d.setDate(d.getDate()+offset);return d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});}
+function getCurSchItem(sch){
+  const now=new Date(),mins=now.getHours()*60+now.getMinutes();
+  let best=sch[0];
+  for(const item of sch){
+    const[tt,period]=item.t.split(' ');const[hr,mn]=tt.split(':').map(Number);
+    let h24=hr;if(period==='PM'&&hr!==12)h24=hr+12;if(period==='AM'&&hr===12)h24=0;
+    if(h24*60+mn<=mins)best=item;
+  }
+  return best;
+}
+
+// ─── PERSON SWITCH ───────────────────────────────────────────
+function sp(p){
+  person=p;
+  document.getElementById('btn-j').className='ptab'+(p==='j'?' aj':'');
+  document.getElementById('btn-jg').className='ptab'+(p==='jg'?' ajg':'');
+  renderAll();
+}
+
+// ─── PANEL SWITCH ────────────────────────────────────────────
+function switchPanel(panel){
+  activePanel=panel;
+  document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
+  document.getElementById('panel-'+panel).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(el=>el.className='nav-btn');
+  const nb=document.getElementById('nav-'+panel);
+  if(nb)nb.classList.add(person==='j'?'aj':'ajg');
+  renderAll();
+}
+
+// ─── MAIN RENDER ─────────────────────────────────────────────
+function renderAll(){
+  renderHeader();
+  renderHero();
+  renderProgress();
+  renderWater();
+  renderSteps();
+  renderMotiv();
+  renderSchedule();
+  renderMeals();
+  renderExercise();
+  renderWatch();
+  renderCalendar();
+  renderTips();
+}
+
+function renderHeader(){
+  const p=person;
+  document.getElementById('dayBadge').textContent=`Day ${dayNum()+1} of 15`;
+  document.getElementById('dayBadge').className=`day-badge day-badge-${p}`;
+}
+
+function renderHero(){
+  const p=person;
+  document.getElementById('heroCard').className=`hero hero-${p}`;
+  document.getElementById('hGreet').textContent=greet();
+  document.getElementById('hName').textContent=p==='j'?'Jigar':'Jigna';
+  document.getElementById('hRole').textContent=p==='j'
+    ?('IT Professional · Office 10AM–7PM'+(isWeekend()?' · 🏏 Cricket day!':''))
+    :'Engineering Professor · College 10AM–6PM';
+  document.getElementById('hDay').textContent=dayNum()+1;
+  const sch=getSchData();
+  const cur=getCurSchItem(sch);
+  document.getElementById('hNow').textContent=cur.title+' — '+cur.desc.split('.')[0];
+
+  let done=0;
+  sch.forEach((_,i)=>{if(S[sk('sch_'+i)])done++;});
+  document.getElementById('hDone').textContent=done;
+
+  let streak=0;
+  for(let d=dayNum();d>=0;d--){if(S[`${p}_${d}_streak`])streak++;else break;}
+  document.getElementById('hStreak').textContent=streak+'🔥';
+}
+
+function getSchData(){return person==='j'?(isWeekend()?J_WE:J_WD):(isWeekend()?JG_WE:JG_WD);}
+
+function renderProgress(){
+  const p=person;
+  const pfx=`pcard-val pcard-val-${p}`;
+  const pbarCls=`pbar pbar-${p}`;
+
+  let mDone=0;
+  [0,1,2].forEach(i=>{if(S[sk('meal_'+i+'_done')])mDone++;});
+  document.getElementById('pMeals').className=pfx;
+  document.getElementById('pMeals').textContent=`${mDone}/3`;
+  document.getElementById('pMealsBar').className=pbarCls;
+  document.getElementById('pMealsBar').style.width=`${(mDone/3)*100}%`;
+
+  const illus=p==='j'?J_ILLUS:JG_ILLUS;
+  let eDone=illus.filter((_,i)=>S[sk('illus_'+i)]).length;
+  document.getElementById('pEx').className=pfx;
+  document.getElementById('pEx').textContent=`${eDone}/${illus.length}`;
+  document.getElementById('pExBar').className=pbarCls;
+  document.getElementById('pExBar').style.width=`${(eDone/illus.length)*100}%`;
+
+  const meds=p==='j'?J_MED:JG_MED;
+  let medDone=meds.filter((_,mi)=>S[sk('med_'+mi+'_done')]).length;
+  document.getElementById('pMed').className=pfx;
+  document.getElementById('pMed').textContent=`${medDone}/${meds.length}`;
+  document.getElementById('pMedBar').className=pbarCls;
+  document.getElementById('pMedBar').style.width=`${(medDone/meds.length)*100}%`;
+}
+
+function renderWater(){
+  const p=person;
+  const water=S[sk('water')]||0;
+  const wrap=document.getElementById('waterGlasses');
+  wrap.innerHTML='';
+  for(let i=0;i<8;i++){
+    const g=document.createElement('div');
+    g.className='wg'+(i<water?` f${p}`:'');
+    g.textContent=i<water?'💧':'🫙';
+    g.onclick=()=>{
+      const cur=S[sk('water')]||0;
+      S[sk('water')]=i<cur?i:i+1;
+      saveState();renderWater();renderProgress();
+      showToast(`Glass ${S[sk('water')]} done! 💧`);
+    };
+    wrap.appendChild(g);
+  }
+  document.getElementById('waterNote').textContent=`${water} of 8 glasses done`;
+}
+
+function renderSteps(){
+  const p=person;
+  document.getElementById('stepsBtn').className=`steps-btn steps-btn-${p}`;
+  const steps=S[sk('steps')]||0;
+  const goal=8000;
+  document.getElementById('stepsToday').textContent=steps.toLocaleString();
+  document.getElementById('stepsToday').style.color=`var(--${p}-primary)`;
+  document.getElementById('stepsKm').textContent=(steps*0.00078).toFixed(1);
+  document.getElementById('stepsBar').className=`pbar pbar-${p}`;
+  document.getElementById('stepsBar').style.width=`${Math.min(100,(steps/goal)*100)}%`;
+}
+
+function logSteps(){
+  const val=parseInt(document.getElementById('stepsInput').value)||0;
+  if(val<0||val>50000){showToast('Enter valid steps (0–50000)');return;}
+  S[sk('steps')]=val;
+  saveState();renderSteps();
+  document.getElementById('stepsInput').value='';
+  showToast(`👟 ${val.toLocaleString()} steps logged!`);
+  if(val>=8000)showToast('🎉 Step goal achieved! Great work!');
+}
+
+function renderMotiv(){
+  const p=person;
+  document.getElementById('motivCard').className=`motiv-card motiv-${p}`;
+  const d=dayNum();const[q,a]=QUOTES[Math.min(d,QUOTES.length-1)];
+  document.getElementById('motivQ').textContent=`"${q}"`;
+  document.getElementById('motivA').textContent=(a?`— ${a} · `:``)+ `Day ${d+1} of your 15-day journey`;
+}
+
+function renderSchedule(){
+  const p=person;const sch=getSchData();const cur=getCurSchItem(sch);
+  const wrap=document.getElementById('schWrap');wrap.innerHTML='';
+  const d=new Date(START);d.setDate(d.getDate()+dayNum());
+  document.getElementById('schDate').textContent=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  sch.forEach((item,i)=>{
+    const done=S[sk('sch_'+i)];const isCur=item===cur;
+    const div=document.createElement('div');
+    div.className='sch-item'+(done?' done':'')+(isCur?` cur-${p}`:'');
+    let badge='';
+    if(isCur)badge=`<span class="si-badge sb-now">▶ Now</span>`;
+    else if(item.badge)badge=`<span class="si-badge sb-${p}">${item.badge}</span>`;
+    const chk=document.createElement('div');
+    chk.className='si-chk'+(done?` ck-${p}`:'');
+    chk.textContent=done?'✓':'';
+    chk.onclick=()=>{S[sk('sch_'+i)]=!S[sk('sch_'+i)];saveState();renderAll();if(S[sk('sch_'+i)])showToast('✓ '+item.title);};
+    div.innerHTML=`<div class="si-time">${item.icon} ${item.t}</div><div class="si-content"><div class="si-title">${item.title}</div><div class="si-desc">${item.desc}</div>${badge}</div>`;
+    div.appendChild(chk);wrap.appendChild(div);
+  });
+}
+
+function renderMeals(){
+  const p=person;const meals=p==='j'?J_MEALS:JG_MEALS;const di=dayIdx();
+  const wrap=document.getElementById('mealsWrap');wrap.innerHTML='';
+  document.getElementById('mealDayLbl').textContent=`Day ${dayNum()+1} — ${dateStr(dayNum())}`;
+  meals.forEach((meal,mi)=>{
+    const items=meal.rotate[di].split('+').map(s=>s.trim());
+    const card=document.createElement('div');card.className='meal-card';
+    const hdr=document.createElement('div');
+    hdr.className=`meal-hdr meal-hdr-${p}`;
+    hdr.innerHTML=`<span class="meal-ttl">${meal.type}</span><span class="meal-time">${meal.time}</span>`;
+    card.appendChild(hdr);
+    const body=document.createElement('div');body.className='meal-body';
+    const ul=document.createElement('ul');ul.className='meal-items';
+    items.forEach((item,ii)=>{
+      const eaten=S[sk(`meal_${mi}_item_${ii}`)];
+      const li=document.createElement('li');
+      li.innerHTML=`<span class="mdot mdot-${p}"></span><span style="${eaten?'text-decoration:line-through;color:var(--muted)':''}">${item}</span>`;
+      const chk=document.createElement('div');
+      chk.className='mchk'+(eaten?` e${p}`:'');chk.textContent=eaten?'✓':'';
+      chk.onclick=()=>{
+        S[sk(`meal_${mi}_item_${ii}`)]=!S[sk(`meal_${mi}_item_${ii}`)];
+        let allDone=true;items.forEach((_,j)=>{if(!S[sk(`meal_${mi}_item_${j}`)])allDone=false;});
+        S[sk('meal_'+mi+'_done')]=allDone;
+        saveState();renderMeals();renderProgress();
+        if(S[sk(`meal_${mi}_item_${ii}`)])showToast('✓ '+item);
+      };
+      li.appendChild(chk);ul.appendChild(li);
+    });
+    body.appendChild(ul);card.appendChild(body);wrap.appendChild(card);
+  });
+}
+
+function renderExercise(){
+  const p=person;const dNum=dayNum();const week=dNum<5?1:dNum<10?2:3;
+  const wrap=document.getElementById('exWrap');wrap.innerHTML='';
+  document.getElementById('exSub').textContent=`Week ${week} · Day ${dNum+1} · ${isWeekend()&&p==='j'?'🏏 Cricket day!':'Check off as you go'}`;
+
+  // Illustration grid
+  const illus=p==='j'?J_ILLUS:JG_ILLUS;
+  const iTitle=document.createElement('div');
+  iTitle.style.cssText='font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text)';
+  iTitle.textContent='💪 Exercise Moves — tap to mark done';
+  wrap.appendChild(iTitle);
+
+  const grid=document.createElement('div');grid.className='ex-illus-grid';
+  illus.forEach((ex,i)=>{
+    const done=S[sk('illus_'+i)];
+    const card=document.createElement('div');card.className='ex-illus-card';
+    card.innerHTML=`
+      <div class="ex-illus-img ex-illus-img-${p}"><span style="font-size:52px">${ex.emoji}</span></div>
+      <div class="ex-illus-info">
+        <div class="ex-illus-name">${ex.name}</div>
+        <div class="ex-illus-desc">${ex.desc}</div>
+        <div class="ex-illus-chk">
+          <div class="ex-illus-chkbox${done?' ei-ck-'+p:''}">${done?'✓':''}</div>
+          <span>${done?'Done!':'Mark as done'}</span>
+        </div>
+      </div>`;
+    card.onclick=()=>{S[sk('illus_'+i)]=!S[sk('illus_'+i)];saveState();renderExercise();renderProgress();if(S[sk('illus_'+i)])showToast('💪 '+ex.name+' done!');};
+    grid.appendChild(card);
+  });
+  wrap.appendChild(grid);
+
+  // Detailed exercise checklist
+  const exListTitle=document.createElement('div');
+  exListTitle.style.cssText='font-size:14px;font-weight:600;margin:14px 0 8px;color:var(--text)';
+  exListTitle.textContent='📋 Today\'s Detailed Workout';
+  wrap.appendChild(exListTitle);
+
+  if(p==='j'&&isWeekend()){
+    const card=document.createElement('div');card.className='ex-card';
+    card.innerHTML=`<div class="ex-hdr"><div class="ex-icon-box eib-j">🏏</div><div><div class="ex-ttl">Cricket Day!</div><div class="ex-sub">3 hours replaces all exercise</div></div></div>`;
+    const items=[{name:"Pre-match warm-up",dur:"5 min"},{name:"Cricket 7AM–10AM",dur:"3 hours"},{name:"Post-match cool-down",dur:"5 min"},{name:"Post-dinner walk",dur:"20 min"}];
+    buildExItems(card,items,p,'cricket');wrap.appendChild(card);
+  } else {
+    const morItems=[{name:"Brisk walk (fasted)",dur:p==='j'?"40 min":"25 min"},{name:"Anulom Vilom pranayama",dur:"5 min"},{name:p==='j'?"Kapalbhati pranayama":"Surya Namaskar (4 rounds)",dur:p==='j'?"5 min":"5 min"},{name:"Cool-down stretching",dur:"5 min"}];
+    const mc=document.createElement('div');mc.className='ex-card';
+    mc.innerHTML=`<div class="ex-hdr"><div class="ex-icon-box eib-${p}">${p==='j'?'🚶':'🧘'}</div><div><div class="ex-ttl">Morning Session</div><div class="ex-sub">6:45 AM · Fasted</div></div></div>`;
+    buildExItems(mc,morItems,p,'morning');wrap.appendChild(mc);
+
+    if(p==='j'){
+      const wk=week===1?[{name:"Wall push-ups ×10",dur:"2 sets"},{name:"Chair squats ×10",dur:"2 sets"},{name:"Standing leg raises ×10",dur:"2 sets"},{name:"Calf raises ×15",dur:"2 sets"}]:week===2?[{name:"Knee push-ups ×12",dur:"3 sets"},{name:"Bodyweight squats ×15",dur:"3 sets"},{name:"Lunges ×10 each",dur:"3 sets"},{name:"Plank hold 20 sec",dur:"3 sets"},{name:"Glute bridge ×12",dur:"3 sets"}]:[{name:"Push-ups ×12",dur:"3 sets"},{name:"Squats ×20",dur:"3 sets"},{name:"Reverse lunges ×12",dur:"3 sets"},{name:"Plank hold 30 sec",dur:"3 sets"},{name:"Mountain climbers ×20",dur:"3 sets"}];
+      const ec=document.createElement('div');ec.className='ex-card';
+      ec.innerHTML=`<div class="ex-hdr"><div class="ex-icon-box eib-j">💪</div><div><div class="ex-ttl">Evening Strength</div><div class="ex-sub">Week ${week} routine · 8:30 PM</div></div></div>`;
+      buildExItems(ec,wk,p,'evening');wrap.appendChild(ec);
+    } else {
+      const ygItems=[{name:"Trikonasana (Triangle pose)",dur:"2 min"},{name:"Vrikshasana (Tree pose)",dur:"2 min"},{name:"Seated forward bend",dur:"2 min"},{name:"Spinal twist both sides",dur:"2 min"}];
+      const yc=document.createElement('div');yc.className='ex-card';
+      yc.innerHTML=`<div class="ex-hdr"><div class="ex-icon-box eib-jg">🌿</div><div><div class="ex-ttl">Yoga Poses</div><div class="ex-sub">After Surya Namaskar</div></div></div>`;
+      buildExItems(yc,ygItems,p,'yoga');wrap.appendChild(yc);
+    }
+  }
+
+  const wlkItems=p==='j'?[{name:"Post-lunch walk",dur:"10 min"},{name:"Post-dinner walk",dur:"20 min"}]:[{name:"Post-dinner family walk",dur:"15 min"},{name:"Between-lecture walk at college",dur:"5 min"}];
+  const wc=document.createElement('div');wc.className='ex-card';
+  wc.innerHTML=`<div class="ex-hdr"><div class="ex-icon-box eib-${p}">🚶</div><div><div class="ex-ttl">Daily Walks</div><div class="ex-sub">Post-meal movement</div></div></div>`;
+  buildExItems(wc,wlkItems,p,'walks');wrap.appendChild(wc);
+
+  // Meditation section
+  const medTitle=document.createElement('div');
+  medTitle.style.cssText='font-size:14px;font-weight:600;margin:14px 0 8px;color:var(--text)';
+  medTitle.textContent='🧘 Meditation Plan';
+  wrap.appendChild(medTitle);
+
+  const meds=p==='j'?J_MED:JG_MED;
+  meds.forEach((med,mi)=>{
+    const allDone=S[sk('med_'+mi+'_done')];
+    const mc=document.createElement('div');mc.className=`med-card med-card-${p}`;
+    let stepsHtml='<div class="med-steps">';
+    med.steps.forEach((step,si)=>{
+      const done=S[sk(`med_${mi}_${si}`)];
+      stepsHtml+=`<div class="med-step${done?` d${p}`:''}" onclick="toggleMedStep(${mi},${si})">
+        <div class="med-step-num msn-${p}">${si+1}</div>
+        <div class="med-step-info"><div class="ms-ttl">${step.title}</div><div class="ms-desc">${step.desc}</div></div>
+        <div class="med-step-chk">${done?'✓':''}</div>
+      </div>`;
+    });
+    stepsHtml+='</div>';
+    mc.innerHTML=`<div class="med-hdr"><div class="med-icon mi-${p}">${med.icon}</div><div><div class="med-ttl">${med.title}</div><div class="med-sub">${med.sub}</div></div></div>${stepsHtml}`;
+    wrap.appendChild(mc);
+  });
+}
+
+function buildExItems(card,items,p,prefix){
+  const div=document.createElement('div');div.className='ex-items';
+  items.forEach((item,i)=>{
+    const done=S[sk(`ex_${prefix}_${i}`)];
+    const el=document.createElement('div');el.className=`ex-item${done?` d${p}`:''}`;
+    el.innerHTML=`<div class="ex-cb">${done?'✓':''}</div><span class="ex-name">${item.name}</span><span class="ex-dur">${item.dur}</span>`;
+    el.onclick=()=>{S[sk(`ex_${prefix}_${i}`)]=!S[sk(`ex_${prefix}_${i}`)];saveState();renderExercise();renderProgress();if(S[sk(`ex_${prefix}_${i}`)])showToast('💪 '+item.name+' done!');};
+    div.appendChild(el);
+  });
+  card.appendChild(div);
+}
+
+function toggleMedStep(mi,si){
+  const p=person;
+  S[sk(`med_${mi}_${si}`)]=!S[sk(`med_${mi}_${si}`)];
+  const meds=p==='j'?J_MED:JG_MED;
+  const allDone=meds[mi].steps.every((_,j)=>S[sk(`med_${mi}_${j}`)]);
+  S[sk('med_'+mi+'_done')]=allDone;
+  saveState();renderExercise();renderProgress();
+  if(S[sk(`med_${mi}_${si}`)])showToast('🧘 '+meds[mi].steps[si].title+' done!');
+}
+
+function renderWatch(){
+  const p=person;const wrap=document.getElementById('watchWrap');wrap.innerHTML='';
+  const data=WATCH_DATA;
+  const sections=[
+    {title:"General — All Watches",icon:"⌚",tips:data.general},
+    {title:p==='j'?"Jigar's Watch Setup":"Jigna's Watch Setup",icon:p==='j'?"👨":"👩",tips:p==='j'?data.jigar:data.jigna}
+  ];
+  sections.forEach(sec=>{
+    const card=document.createElement('div');card.className='watch-card';
+    card.innerHTML=`<div class="watch-ttl">${sec.icon} ${sec.title}</div>`;
+    const tips=document.createElement('div');
+    sec.tips.forEach(tip=>{
+      const el=document.createElement('div');el.className='watch-tip';
+      el.innerHTML=`<div class="wt-icon">${tip.icon}</div><div><div class="wt-title">${tip.title}</div><div class="wt-desc">${tip.desc}</div></div>`;
+      tips.appendChild(el);
+    });
+    card.appendChild(tips);wrap.appendChild(card);
+  });
+
+  // Supported watches
+  const wbCard=document.createElement('div');wbCard.className='watch-card';
+  wbCard.innerHTML=`<div class="watch-ttl">📱 Supported Watch Apps</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+      ${['Apple Watch','Fitbit','Mi Band / Xiaomi','Samsung Galaxy Watch','Garmin','Google Fit'].map(w=>`<div style="background:var(--bg);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:500">${w}</div>`).join('')}
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:10px">All these watch apps let you export step count, heart rate and sleep data. Sync daily and log steps here manually using the Steps section on the Today tab.</div>`;
+  wrap.appendChild(wbCard);
+}
+
+function renderCalendar(){
+  const p=person;const grid=document.getElementById('calGrid');grid.innerHTML='';const cur=dayNum();
+  for(let i=0;i<15;i++){
+    const chip=document.createElement('div');const isToday=i===cur;const isDone=S[`${p}_${i}_done`];
+    chip.className='day-chip'+(isToday?` td-${p}`:isDone?` cp-${p}`:'');
+    const d=new Date(START);d.setDate(d.getDate()+i);
+    chip.innerHTML=`<div class="day-num">${i+1}</div><div class="day-lbl">${d.toLocaleDateString('en-IN',{month:'short',day:'numeric'})}</div>`;
+    chip.onclick=()=>showDayDetail(i);
+    grid.appendChild(chip);
+  }
+}
+
+function showDayDetail(di){
+  const p=person;const meals=p==='j'?J_MEALS:JG_MEALS;const mi=di%7;
+  const d=new Date(START);d.setDate(d.getDate()+di);
+  const dateS=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+  const dow=d.getDay();const we=dow===0||dow===6;
+  const detail=document.getElementById('dayDetail');
+  detail.className='day-detail show';
+  detail.innerHTML=`
+    <div style="font-family:'Playfair Display',serif;font-size:17px;margin-bottom:10px">Day ${di+1} — ${dateS}</div>
+    ${we&&p==='j'?`<div style="background:var(--j-light);border-radius:8px;padding:7px 10px;margin-bottom:10px;font-size:12px;color:var(--j-dark)">🏏 Cricket day! Adjust schedule accordingly.</div>`:''}
+    <div class="dd-row"><div class="dd-ico">🌅</div><div><div class="dd-ml-type">Breakfast</div><div class="dd-ml-txt">${meals[0].rotate[mi]}</div></div></div>
+    <div class="dd-row"><div class="dd-ico">☀️</div><div><div class="dd-ml-type">Lunch</div><div class="dd-ml-txt">${meals[1].rotate[mi]}</div></div></div>
+    <div class="dd-row"><div class="dd-ico">🌙</div><div><div class="dd-ml-type">Dinner</div><div class="dd-ml-txt">${meals[2].rotate[mi]}</div></div></div>
+    <button class="complete-btn cb-${p}" onclick="markDone(${di})">${S[`${p}_${di}_done`]?'✓ Day Complete! ':'Mark Day as Complete'}</button>`;
+}
+
+function markDone(di){
+  const p=person;
+  S[`${p}_${di}_done`]=!S[`${p}_${di}_done`];
+  if(di===dayNum())S[`${p}_${di}_streak`]=true;
+  saveState();renderCalendar();showDayDetail(di);
+  showToast(S[`${p}_${di}_done`]?`🎉 Day ${di+1} complete!`:'Unmarked');
+}
+
+function renderTips(){
+  const p=person;const wrap=document.getElementById('tipsWrap');wrap.innerHTML='';
+  const tips=p==='j'?J_TIPS:JG_TIPS;const d=dayNum();
+  const todayTip=tips[Math.min(d,tips.length-1)];
+  const tc=document.createElement('div');tc.className=`tip-card tc-${p}`;
+  tc.innerHTML=`<div class="tip-ttl">💡 Day ${d+1} Tip</div><div class="tip-txt"><b>${todayTip.t}</b> — ${todayTip.b}</div>`;
+  wrap.appendChild(tc);
+
+  const rules=p==='j'?J_RULES:JG_RULES;
+  const ruleCard=document.createElement('div');ruleCard.className='watch-card';
+  const doG=document.createElement('div');doG.className='rule-grp';
+  doG.innerHTML='<div class="rg-ttl">Always Do ✓</div>';
+  rules.do.forEach(r=>{const el=document.createElement('div');el.className='rule-item';el.innerHTML=`<span class="rdot rdot-g"></span>${r}`;doG.appendChild(el);});
+  const dontG=document.createElement('div');dontG.className='rule-grp';
+  dontG.innerHTML='<div class="rg-ttl">Avoid ✗</div>';
+  rules.dont.forEach(r=>{const el=document.createElement('div');el.className='rule-item';el.innerHTML=`<span class="rdot rdot-r"></span>${r}`;dontG.appendChild(el);});
+  ruleCard.appendChild(doG);ruleCard.appendChild(dontG);wrap.appendChild(ruleCard);
+
+  // All 15 tips preview
+  const allCard=document.createElement('div');allCard.className='watch-card';
+  allCard.innerHTML=`<div class="watch-ttl" style="margin-bottom:10px">📖 All 15 Days Tips</div>`;
+  tips.forEach((tip,i)=>{
+    const el=document.createElement('div');
+    el.style.cssText='padding:7px 0;border-bottom:1px solid var(--border);font-size:12px';
+    el.innerHTML=`<span style="font-weight:600;color:var(--${p}-primary)">Day ${i+1}:</span> <b>${tip.t}</b> — ${tip.b}`;
+    allCard.appendChild(el);
+  });
+  wrap.appendChild(allCard);
+}
+
+// ─── AUTO REFRESH ────────────────────────────────────────────
+setInterval(()=>{
+  if(activePanel==='today'){
+    const sch=getSchData();const cur=getCurSchItem(sch);
+    document.getElementById('hNow').textContent=cur.title+' — '+cur.desc.split('.')[0];
+  }
+},60000);
+
+// ─── INIT ────────────────────────────────────────────────────
+loadState();
+setTimeout(()=>{
+  document.getElementById('splash').classList.add('hide');
+  setTimeout(()=>{const s=document.getElementById('splash');if(s)s.remove();},700);
+  renderAll();
+},1800);
+</script>
+</body>
+</html>
