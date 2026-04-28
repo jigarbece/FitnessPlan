@@ -511,21 +511,21 @@ const J_WE = [
   {t:"10:30 PM",title:"Bedtime",desc:"Soak methi seeds. Haldi doodh. Sleep by 11PM.",icon:"😴"}
 ];
 const JG_WD = [
-  {t:"6:30 AM",title:"Wake up",desc:"Warm lemon water with pinch of cinnamon. Calm start.",icon:"☀️"},
-  {t:"6:40 AM",title:"Morning Meditation",desc:"8 min sunrise meditation + intention setting for the teaching day.",icon:"🧘",badge:"8 min"},
-  {t:"6:50 AM",title:"Yoga & morning walk",desc:"15 min Surya Namaskar + 15 min walk. Flexibility and energy focus.",icon:"🧘",badge:"30 min"},
-  {t:"7:30 AM",title:"Family morning",desc:"Help with son's morning. Cook breakfast for everyone.",icon:"👨‍👩‍👦"},
-  {t:"8:00 AM",title:"Breakfast",desc:"See today's meal plan. Normal portion — energy for 6 hours of teaching!",icon:"🍽️",badge:"Full breakfast"},
-  {t:"9:15 AM",title:"Leave for college",desc:"Carry: water, fruit for 11AM, healthy snack for between lectures.",icon:"🎓"},
-  {t:"11:00 AM",title:"Mid-morning break",desc:"1 fruit + almonds/walnuts. Green tea or coconut water.",icon:"🍎"},
-  {t:"1:00 PM",title:"Lunch",desc:"Salad first → Dal + sabzi + chickpeas → Chaas/curd. Proper full lunch — don't skip!",icon:"🥗",badge:"Don't skip"},
-  {t:"4:00 PM",title:"Afternoon snack",desc:"Roasted chana + walnuts OR cucumber+carrot sticks.",icon:"🥕"},
-  {t:"4:30 PM",title:"Between-lecture mini meditation",desc:"3 min desk breathing exercise. Clears mental fatigue.",icon:"🧘",badge:"3 min"},
-  {t:"6:30 PM",title:"Return home",desc:"10–15 min walk near home. Decompress from the day.",icon:"🏠"},
-  {t:"7:30 PM",title:"Dinner",desc:"Soup → Dal + sabzi + roti (1-2). Balanced dinner — this is maintenance.",icon:"🍽️",badge:"Balanced"},
-  {t:"8:15 PM",title:"Family walk",desc:"Post-dinner walk with Jigar and son. Bonding + digestion!",icon:"🌙",badge:"Family time"},
-  {t:"10:00 PM",title:"Evening Meditation",desc:"10 min yoga nidra or body scan. Deep rest for the teaching brain.",icon:"🧘",badge:"10 min"},
-  {t:"10:30 PM",title:"Wind down",desc:"Warm haldi doodh or ajwain water. Sleep by 11PM.",icon:"😴"}
+  {t:"6:30 AM",title:"Wake up",desc:"Warm lemon water with pinch of cinnamon + soaked methi seeds. Energising start.",icon:"☀️"},
+  {t:"6:40 AM",title:"Morning Meditation",desc:"8 min sunrise meditation + intention setting. Set your teaching energy for the day.",icon:"🧘",badge:"8 min"},
+  {t:"6:50 AM",title:"Yoga & walk",desc:"Surya Namaskar 4 rounds + 15 min brisk walk. Builds stamina and flexibility.",icon:"🧘",badge:"30 min"},
+  {t:"7:30 AM",title:"Family morning",desc:"Cook breakfast for the family — today's plan is varied and delicious, see Meals tab!",icon:"👨‍👩‍👦"},
+  {t:"8:00 AM",title:"Breakfast",desc:"Full, energising breakfast — check today's meal plan. Every day is different!",icon:"🍽️",badge:"Full breakfast"},
+  {t:"9:15 AM",title:"Leave for college",desc:"Carry: water, today's fruit, a healthy snack box for between lectures.",icon:"🎓"},
+  {t:"11:00 AM",title:"Mid-morning break",desc:"Seasonal fruit + small handful almonds or walnuts. Coconut water or green tea.",icon:"🍎"},
+  {t:"1:00 PM",title:"Lunch",desc:"Salad FIRST → Dal + varied sabzi → Roti or rice → Curd or chaas. Full nourishing lunch!",icon:"🥗",badge:"Don't skip!"},
+  {t:"4:00 PM",title:"Afternoon snack",desc:"Roasted chana + walnuts OR steamed corn + lemon OR carrot sticks + hummus.",icon:"🥕"},
+  {t:"4:30 PM",title:"Between-lecture breathing",desc:"3 min alternate nostril breathing. Resets mental energy for afternoon lectures.",icon:"🧘",badge:"3 min"},
+  {t:"6:30 PM",title:"Return home",desc:"10–15 min walk near home or society garden. Wind down from the day.",icon:"🏠"},
+  {t:"7:30 PM",title:"Dinner",desc:"Soup first → Dal + today's sabzi + roti. Light but complete. Every dinner is different!",icon:"🍽️",badge:"Balanced"},
+  {t:"8:15 PM",title:"Family walk",desc:"Post-dinner walk with Jigar and son. Great for digestion and family bonding!",icon:"🌙",badge:"Family time"},
+  {t:"10:00 PM",title:"Evening Meditation",desc:"10 min yoga nidra or body scan. Deep rest for a teacher's busy mind.",icon:"🧘",badge:"10 min"},
+  {t:"10:30 PM",title:"Wind down",desc:"Warm haldi doodh or ajwain water. Sleep by 11PM — 7 hrs is non-negotiable.",icon:"😴"}
 ];
 const JG_WE = [
   {t:"6:30 AM",title:"Wake up",desc:"Warm lemon water. Relaxed morning.",icon:"☀️"},
@@ -547,10 +547,59 @@ const J_MEALS = [
   {type:"Lunch",time:"1:00 PM",rotate:["Salad + Moong Dal + Tomato Sabzi + Chickpeas + Chaas","Salad + Toor Dal + Shimla Mirch + Black Chana + Chaas","Salad + Chana Dal + Cabbage Sabzi + Chickpeas","Salad + Toor Dal + Tomato Sabzi + Chickpeas + Chaas","Salad + Moong Dal + Shimla Mirch + Black Chana","Salad + Chana Dal + Tomato Sabzi + Chickpeas","Salad + Moong Dal + Cabbage Sabzi + Sprout Chaat"]},
   {type:"Dinner",time:"7:30 PM",rotate:["Clear Veg Soup + Toor Dal + Cabbage Sabzi","Clear Veg Soup + Chana Dal + Tomato Sabzi","Clear Veg Soup + Moong Dal + Shimla Mirch Sabzi","Clear Veg Soup + Toor Dal + Cabbage Sabzi","Clear Veg Soup + Chana Dal + Tomato Sabzi","Clear Veg Soup + Moong Dal + Cabbage Sabzi","Clear Veg Soup + Toor Dal + Shimla Mirch Sabzi"]}
 ];
+// Jigna: full 15-day rotation (idx 0–14) — all vegetables, varied cuisines, energy-focused
 const JG_MEALS = [
-  {type:"Breakfast",time:"8:00 AM",rotate:["Vegetable Poha + Chaas","Idli + Sambar + Coconut Chutney","Besan Chilla + Chaas + Sprout Chaat","Dosa + Sambar + Chutney","Methi Thepla + Chaas","Savory Oats + Green Tea","Vegetable Upma + Chaas"]},
-  {type:"Lunch",time:"1:00 PM",rotate:["Salad + Moong Dal + Sabzi + Roti + Curd","Salad + Toor Dal + Shimla Mirch + Rice + Curd","Salad + Chana Dal + Cabbage + Roti + Curd","Dal + Sabzi + Roti + Chickpeas + Curd","Moong Dal + Shimla Mirch + Rice + Curd","Toor Dal + Tomato Sabzi + Roti + Curd","Chana Dal + Cabbage + Roti + Sprout Chaat"]},
-  {type:"Dinner",time:"7:30 PM",rotate:["Soup + Toor Dal + Sabzi + Roti","Soup + Moong Dal + Cabbage + Roti","Soup + Chana Dal + Shimla Mirch + Roti","Soup + Toor Dal + Tomato Sabzi + Rice","Soup + Moong Dal + Sabzi + Roti","Soup + Chana Dal + Cabbage + Roti","Soup + Toor Dal + Shimla Mirch + Rice"]}
+  {type:"Breakfast",time:"8:00 AM",rotate:[
+    "Vegetable Poha (onion+peas+carrot+coriander) + Chaas + 1 Orange",          // D1
+    "Rava Idli (3) + Tomato Chutney + Sambar + Coconut Water",                   // D2
+    "Besan Chilla stuffed with Spinach+Paneer + Green Chutney + Chaas",          // D3
+    "Masala Dosa (potato+onion filling) + Sambar + Coconut Chutney",             // D4
+    "Methi Thepla + Dahi + Sprout Chaat + 1 Apple",                              // D5
+    "Oats Upma with Carrot+Beans+Capsicum + Green Tea + 1 Guava",               // D6
+    "Vegetable Uttapam (onion+tomato+capsicum) + Sambar + Chaas",                // D7
+    "Moong Dal Chilla + Mint Chutney + Lauki Sabzi + Chaas",                     // D8
+    "Ragi Dosa + Tomato-Onion Chutney + Sambar + Coconut Water",                 // D9
+    "Aloo Paratha (light oil) + Dahi + 1 Pear + Green Tea",                      // D10
+    "Pesarattu (Moong Dal Dosa) + Ginger Chutney + Sambar",                      // D11
+    "Vegetable Poha + Boiled Egg OR Paneer bhurji + Chaas",                      // D12
+    "Bread Upma with Mixed Vegetables + Chaas + 1 Banana",                       // D13
+    "Rava Dosa + Onion Chutney + Drumstick Sambar + Coconut Water",              // D14
+    "Besan Chilla + Palak Sabzi + Sprout Chaat + 1 Papaya"                       // D15
+  ]},
+  {type:"Lunch",time:"1:00 PM",rotate:[
+    "Rainbow Salad + Toor Dal + Lauki Sabzi + Roti + Curd",                      // D1
+    "Salad + Rajma Curry + Steamed Rice + Onion-Tomato Raita",                   // D2
+    "Cucumber Salad + Chana Dal + Methi Bhaji + Roti + Chaas",                   // D3
+    "Mixed Sprout Chaat + Moong Dal + Bhindi Sabzi + Roti + Curd",               // D4
+    "Kachumber Salad + Toor Dal + Aloo Gobi (dry) + Rice + Curd",                // D5
+    "Salad + Palak Paneer (light) + Roti + Moong Dal + Chaas",                   // D6
+    "Carrot-Beetroot Salad + Chana Masala + Rice + Cucumber Raita",              // D7
+    "Salad + Toor Dal + Tinda Sabzi + Roti + Dahi",                              // D8
+    "Greek-style Salad + Moong Dal Tadka + Baingan Bharta + Roti",               // D9
+    "Sprout Bowl + Rajma Rice + Cabbage Stir-fry + Curd",                        // D10
+    "Salad + Chana Dal + Lauki+Chana Sabzi + Roti + Chaas",                      // D11
+    "Kachumber + Dal Palak + Roti + Boiled Potato Sabzi + Curd",                 // D12
+    "Salad + Toor Dal + Mix Veg (all leftover veggies) + Rice + Raita",          // D13
+    "Salad + Moong Dal + Stuffed Shimla Mirch + Roti + Curd",                    // D14
+    "Rainbow Salad + Chana Dal + Palak+Corn Sabzi + Roti + Chaas"               // D15
+  ]},
+  {type:"Dinner",time:"7:30 PM",rotate:[
+    "Tomato+Carrot Soup + Moong Dal + Turai Sabzi + 1 Roti",                     // D1
+    "Spinach Soup + Toor Dal + Cauliflower Stir-fry + Rice (small)",             // D2
+    "Clear Veg Soup + Chana Dal + Bhindi Sabzi + 1 Roti",                        // D3
+    "Beetroot Soup + Moong Dal + Shimla Mirch Sabzi + 1 Roti",                   // D4
+    "Tomato Soup + Toor Dal + Methi Bhaji + Rice (small)",                       // D5
+    "Carrot-Ginger Soup + Chana Dal + Lauki Sabzi + 1 Roti",                     // D6
+    "Lentil Soup + Moong Dal + Mixed Sabzi + 1 Roti",                            // D7
+    "Palak Soup + Toor Dal + Aloo Shimla Mirch + 1 Roti",                        // D8
+    "Tomato Soup + Chana Dal + Tinda Sabzi + Rice (small)",                      // D9
+    "Veg Clear Soup + Moong Dal + Cabbage+Peas Sabzi + 1 Roti",                  // D10
+    "Carrot Soup + Toor Dal + Baingan Sabzi + 1 Roti",                           // D11
+    "Spinach-Tomato Soup + Chana Dal + Bhindi + Rice (small)",                   // D12
+    "Clear Soup + Moong Dal + Lauki+Chana + 1 Roti",                             // D13
+    "Beetroot-Carrot Soup + Toor Dal + Mix Veg + 1 Roti",                        // D14
+    "Tomato Soup + Chana Dal + Palak+Corn Sabzi + 1 Roti"                        // D15
+  ]}
 ];
 
 // ─── EXERCISE ILLUSTRATIONS ──────────────────────────────────
@@ -663,21 +712,21 @@ const J_TIPS=[
   {t:"Day 15 — make it a lifestyle",b:"Which habits felt easy? Do those forever. That's the real goal."}
 ];
 const JG_TIPS=[
-  {t:"Maintenance is a skill too",b:"Your goal is energy through long teaching days. Consistent good eating is harder than it looks."},
-  {t:"Don't skip college lunch",b:"Teaching 4–6 hours is physically and mentally demanding. A proper lunch fuels afternoon lectures."},
-  {t:"Prep snacks the evening before",b:"Pack tomorrow's snack tonight. Carrot sticks, roasted chana in a small box saves time and prevents canteen temptation."},
-  {t:"Between lectures — move!",b:"5 min walk between back-to-back lectures prevents postural stiffness and refreshes your mind."},
-  {t:"Weekend yoga is your recharge",b:"Your quiet, personal time. Use it. 30 min of yoga reduces cortisol and sets a calm tone for the week."},
-  {t:"Hydration for voice health",b:"As a teacher, your voice is your tool. Staying well-hydrated protects your vocal cords."},
-  {t:"Family meals are shared effort",b:"Dal and sabzi base is the same for both. Cook once, serve everyone. Small planning, big time saving."},
-  {t:"Green tea between lectures",b:"One cup between 3–4 PM reduces afternoon energy dips. Better than chai with sugar."},
-  {t:"Variety keeps it sustainable",b:"You like everything — use that! Try a new sabzi each week. Variety prevents diet fatigue."},
-  {t:"Sleep is non-negotiable",b:"A tired teacher is an ineffective teacher. 7–8 hours is your professional investment."},
-  {t:"Sun exposure matters",b:"Morning walk in sunlight (before 10 AM) for 15 min boosts mood and immune function."},
-  {t:"Surya Namaskar is complete exercise",b:"4 rounds works every major muscle group, improves flexibility, takes only 5 minutes."},
-  {t:"College canteen strategy",b:"If you must eat there, choose idli/dosa over fried options. Keep your packed snack ready."},
-  {t:"Day 14 — notice the difference",b:"More energy? Better sleep? Clearer mind? These are your real wins."},
-  {t:"Day 15 — teach what you practised",b:"You've shown your family what disciplined, joyful eating looks like. That's a priceless lesson."}
+  {t:"Your variety is your superpower",b:"You enjoy all vegetables and all foods — that's rare and valuable. Every day's plan is different so you never get bored. Use this enthusiasm to cook creatively!"},
+  {t:"Don't skip college lunch",b:"Teaching 4–6 hours is physically and mentally demanding. Today's varied lunch is designed to fuel your afternoon energy — eat it fully."},
+  {t:"Prep tomorrow's snack tonight",b:"Pack carrot sticks, roasted chana or fruit in a small box tonight. Having it ready prevents any canteen temptation between lectures."},
+  {t:"Between lectures — move and breathe",b:"5 min walk + 3 min alternate nostril breathing between back-to-back lectures prevents stiffness and refreshes your mind for the next class."},
+  {t:"Weekend yoga is your recharge",b:"While Jigar plays cricket, this is your quiet personal time. 35 min yoga on weekends resets your nervous system for the whole week ahead."},
+  {t:"Hydration protects your voice",b:"As a teacher, your voice is your most important tool. Sip water consistently through lectures — dehydration causes vocal fatigue by mid-afternoon."},
+  {t:"Eat the rainbow — literally",b:"Your 15-day plan includes lauki, bhindi, tinda, turai, palak, methi, baingan, gobi and more. Each vegetable gives different micronutrients. More variety = better energy."},
+  {t:"Rajma and Chana days are protein days",b:"Days with rajma, chana masala or chana dal are your highest protein days. These meals keep you satiated through long back-to-back lecture blocks."},
+  {t:"Cook once, serve both",b:"The soup and dal base tonight is shared with Jigar — you just get roti and he skips it. One cooking effort feeds the whole family. Plan 10 min less in the kitchen!"},
+  {t:"Sleep is your teaching investment",b:"A tired teacher gives less clear explanations, loses patience faster, and feels drained by 3 PM. 7 hours is not personal time — it's professional preparation."},
+  {t:"Sunlight before 10 AM matters",b:"Your morning walk in sunlight triggers serotonin production. This directly improves mood, focus and patience — all critical for a teacher's day."},
+  {t:"Surya Namaskar beats the gym",b:"4 rounds of Surya Namaskar in 5 minutes works your full body, opens the chest for confident teaching posture, and sets mental clarity for the day."},
+  {t:"Baingan Bharta day — enjoy it fully",b:"Today's baingan bharta is one of the most nutritious sabzis — loaded with fibre and antioxidants. Pair it with roti and curd for a complete, satisfying meal."},
+  {t:"Day 14 — feel the difference",b:"Two days left. Notice: more stamina in lectures? Clearer voice? Better mood with students? These are signs the plan is working from the inside out."},
+  {t:"Day 15 — keep the habits, drop the plan",b:"The plan ends today but your best habits shouldn't. Pick 3 things that felt easy and natural — do those forever. That's the real outcome of these 15 days."}
 ];
 
 // ─── STATE ───────────────────────────────────────────────────
@@ -948,7 +997,9 @@ function renderSchedule(){
 }
 
 function renderMeals(){
-  const p=person;const meals=p==='j'?J_MEALS:JG_MEALS;const di=dayIdx();
+  const p=person;const meals=p==='j'?J_MEALS:JG_MEALS;
+  // Jigar repeats every 7 days; Jigna has unique meals for all 15 days
+  const di=p==='j'?dayIdx():Math.min(dayNum(),14);
   const wrap=document.getElementById('mealsWrap');wrap.innerHTML='';
   document.getElementById('mealDayLbl').textContent=`Day ${dayNum()+1} — ${dateStr(dayNum())}`;
   meals.forEach((meal,mi)=>{
@@ -1134,7 +1185,8 @@ function renderCalendar(){
 }
 
 function showDayDetail(di){
-  const p=person;const meals=p==='j'?J_MEALS:JG_MEALS;const mi=di%7;
+  const p=person;const meals=p==='j'?J_MEALS:JG_MEALS;
+  const mi=p==='j'?di%7:Math.min(di,14);
   const d=new Date(START);d.setDate(d.getDate()+di);
   const dateS=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
   const dow=d.getDay();const we=dow===0||dow===6;
@@ -1194,10 +1246,10 @@ function renderWeight(){
   if(!wrap)return;
   wrap.innerHTML='';
   document.getElementById('wtSubtitle').textContent=
-    p==='j'?'Jigar · Starting weight: 84 kg · Goal: 74 kg':'Jigna · Maintenance tracking · Target: 57 kg';
+    p==='j'?'Jigar · Starting: 84 kg · Goal: 74 kg · Track your loss':'Jigna · Starting: 57 kg · Goal: Stay 55–58 kg · Track maintenance';
 
   const startWt=p==='j'?84:57;
-  const goalWt=p==='j'?74:55;
+  const goalWt=p==='j'?74:57;
 
   // collect all logged weights
   const weights=[];
